@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BIUST Mentorship</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#f0f2f5;color:#1a1d23;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;-webkit-text-size-adjust:100%;min-height:100dvh}
+button,input,textarea,select{font:inherit;font-size:16px}
+button{cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+:root{--blue:#0052ff;--blue-light:#e8eeff;--blue-bg:#f0f5ff;--dark:#1a1d23;--gray:#6b7280;--gray-light:#9ca3af;--line:#e5e7eb;--bg:#f0f2f5;--white:#fff;--green:#059669;--green-bg:#ecfdf5;--amber:#d97706;--amber-bg:#fffbeb;--red:#dc2626;--red-bg:#fef2f2;--shadow:0 1px 3px rgba(0,0,0,.06);--shadow-lg:0 4px 6px -1px rgba(0,0,0,.07);--r:12px;--r-sm:8px}
+
+/* ── header ── */
+.hdr{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.94);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.hdr-in{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;gap:8px;max-width:800px;margin:0 auto}
+.brand{display:flex;align-items:center;gap:8px;font-weight:700;font-size:16px;color:var(--blue);white-space:nowrap}
+.brand-s{font-size:20px}
+.sub{font-size:9px;color:var(--gray);text-transform:uppercase;letter-spacing:.05em;display:block;margin-top:-1px}
+.nav{display:flex;gap:3px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;flex:1;justify-content:flex-end}
+.nav::-webkit-scrollbar{display:none}
+.nav-b{white-space:nowrap;border:0;border-radius:8px;background:transparent;color:var(--gray);padding:8px 10px;font-weight:600;font-size:13px;display:flex;align-items:center;gap:4px}
+.nav-b.on{background:var(--white);color:var(--blue);box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.user{font-size:13px;color:var(--gray);display:flex;align-items:center;gap:4px;white-space:nowrap}
+
+/* ── main ── */
+.mn{max-width:800px;margin:0 auto;padding:16px 14px 40px}
+
+/* ── screen ── */
+.scr{display:none}
+.scr.on{display:block;animation:fadeIn .3s ease}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes slideUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pop{0%{transform:scale(0.8);opacity:0}50%{transform:scale(1.05)}100%{transform:scale(1);opacity:1}}
+@keyframes glow{0%,100%{box-shadow:0 0 0 8px var(--blue-light)}50%{box-shadow:0 0 0 14px var(--blue-light)}}
+
+/* ── stepper ── */
+.stepr{display:flex;align-items:center;gap:0;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:4px 0 10px;margin-bottom:4px}
+.stepr::-webkit-scrollbar{display:none}
+.sp{display:flex;flex-direction:column;align-items:center;gap:3px;min-width:56px;font-size:10px;font-weight:700;color:#9ca3af;text-align:center;flex-shrink:0}
+.sp-n{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:var(--white);border:2px solid var(--line);color:#9ca3af;font-size:12px;font-weight:700;flex-shrink:0}
+.sp.on,.sp.done{color:var(--blue)}
+.sp.on .sp-n,.sp.done .sp-n{background:var(--blue);border-color:var(--blue);color:var(--white)}
+.sp.on .sp-n{animation:glow 2s ease-in-out infinite}
+.sp-ln{height:2px;flex:1;min-width:14px;max-width:28px;margin-bottom:16px;background:var(--line);flex-shrink:0}
+.sp-ln.done{background:var(--blue)}
+
+/* ── page head ── */
+.ph{margin-bottom:16px}
+.ey{font-size:11px;font-weight:800;color:var(--blue);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
+h1{font-size:26px;font-weight:800;line-height:1.15;color:var(--dark);margin:0}
+h2{font-size:22px;font-weight:800;line-height:1.2;color:var(--dark);margin:0}
+h3{font-size:18px;font-weight:700;line-height:1.25;margin:0 0 6px}
+p{color:var(--gray);line-height:1.5;font-size:14px}
+.ld{font-size:15px;margin:6px 0 0;max-width:520px}
+
+/* ── field grid ── */
+.fg{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.fc{background:var(--white);border:1px solid var(--line);border-radius:var(--r);padding:14px;text-align:left;min-height:0;animation:slideUp .35s ease both;transition:border-color .15s,border-width .15s}
+.fc:active,.fc.on{border-color:var(--blue);border-width:2px}
+.fc-i{font-size:24px;margin-bottom:10px;display:block}
+.fc h3{font-size:14px;margin:0 0 4px;color:var(--dark)}
+.fc p{font-size:12px;color:var(--gray);margin:0}
+.fc-m{font-size:12px;font-weight:700;color:var(--blue);margin-top:8px}
+
+/* ── mentor visual ── */
+.mv{background:linear-gradient(135deg,#003ec7,rgba(8,127,91,.8));color:var(--white);border-radius:var(--r);padding:18px;margin-top:12px;min-height:100px}
+.mv-n{font-size:36px;font-weight:800;line-height:1}
+.mv-p{font-size:13px;margin:4px 0 0;opacity:.9}
+
+/* ── actions / buttons ── */
+.ac{margin-top:14px;display:flex;flex-wrap:wrap;gap:8px}
+.btn{min-height:44px;border-radius:var(--r);border:0;padding:0 16px;display:inline-flex;align-items:center;justify-content:center;gap:6px;font-weight:700;font-size:14px;transition:transform .1s,background .15s;touch-action:manipulation}
+.btn:active{transform:scale(.97)}
+.btn-p{background:var(--blue);color:var(--white)}
+.btn-s{background:var(--white);color:var(--blue);border:1.5px solid var(--blue)}
+.btn-g{background:transparent;color:var(--gray);border:1px solid var(--line)}
+.btn-full{width:100%}
+
+/* ── layout 3 ── */
+.l3{display:flex;flex-direction:column;gap:12px}
+.fltrs{order:2;background:var(--white);border:1px solid var(--line);border-radius:var(--r);padding:14px}
+.fltrs h3{font-size:15px;margin-bottom:10px}
+.fg-r{border-top:1px solid var(--line);padding-top:12px;margin-top:12px}
+.lb{font-size:13px;font-weight:700;color:var(--dark);display:block;margin-bottom:6px}
+.cr{display:flex;gap:8px;align-items:center;font-size:14px;color:var(--gray);padding:6px 0;font-weight:500}
+.cr input{width:18px;height:18px;accent-color:var(--blue)}
+.sr{display:flex;gap:8px;margin-bottom:10px}
+.sr input{flex:1}
+.in{padding:10px 12px;border:1px solid var(--line);border-radius:var(--r);background:var(--white);min-height:44px;outline:0;width:100%}
+.in:focus{border-color:var(--blue);box-shadow:0 0 0 3px var(--blue-light)}
+.ta{min-height:90px;resize:vertical;padding:10px 12px;border:1px solid var(--line);border-radius:var(--r);background:var(--white);outline:0;width:100%}
+.ta:focus{border-color:var(--blue);box-shadow:0 0 0 3px var(--blue-light)}
+select.in{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:34px}
+
+/* ── mentor grid ── */
+.mg{display:grid;grid-template-columns:1fr;gap:10px}
+.mc{background:var(--white);border:1px solid var(--line);border-radius:var(--r);padding:14px;text-align:left;animation:slideUp .35s ease both;transition:border-color .15s,border-width .15s}
+.mc:active,.mc.on{border-color:var(--blue);border-width:2px}
+.mt{display:flex;align-items:flex-start;gap:10px;margin-bottom:8px}
+.av{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;color:var(--white);font-weight:700;font-size:14px;background:linear-gradient(135deg,#003ec7,#059669);flex-shrink:0;position:relative}
+.av.b{background:linear-gradient(135deg,#7c3aed,#d97706)}
+.av.c{background:linear-gradient(135deg,#059669,#0052ff)}
+.sd{position:absolute;right:0;bottom:0;width:10px;height:10px;border-radius:50%;background:var(--green);border:2px solid var(--white)}
+.sd.w{background:var(--amber)}
+.mn{font-size:14px;font-weight:700;color:var(--dark);margin:0}
+.mr{font-size:12px;color:var(--gray);margin:0}
+.tr{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
+.tg{font-size:11px;font-weight:700;padding:3px 8px;border-radius:999px;background:var(--blue-light);color:var(--blue)}
+.tg.g{background:#d1fae5;color:var(--green)}
+.tg.a{background:#fef3c7;color:var(--amber)}
+.tg.y{background:#f3f4f6;color:var(--gray)}
+.tg.r{background:#fee2e2;color:var(--red)}
+
+/* ── detail panel ── */
+.dt{background:var(--white);border:1px solid var(--line);border-radius:var(--r);padding:14px;order:3}
+.dt-p{height:80px;border-radius:var(--r);background:linear-gradient(135deg,rgba(0,26,65,.86),rgba(0,82,255,.62)) center/cover;margin:-14px -14px 14px}
+
+/* ── form layout ── */
+.fl{display:flex;flex-direction:column;gap:12px}
+.fg2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.fw{grid-column:1/-1}
+.sc{padding:14px;background:var(--white);border:1px solid var(--line);border-radius:var(--r);position:static}
+
+/* ── success ── */
+.sl{display:flex;flex-direction:column;gap:12px}
+.spn{padding:22px}
+.sm{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;color:var(--white);background:var(--green);box-shadow:0 0 0 8px #d1fae5;margin-bottom:20px;animation:pop .5s ease,glowG 2s ease-in-out .5s infinite}
+@keyframes glowG{0%,100%{box-shadow:0 0 0 8px #d1fae5}50%{box-shadow:0 0 0 14px #d1fae5}}
+.tl{display:grid;gap:10px}
+.tli{display:grid;grid-template-columns:28px 1fr;gap:8px;align-items:start;animation:slideUp .35s ease both}
+.tli:nth-child(1){animation-delay:.1s}
+.tli:nth-child(2){animation-delay:.2s}
+.tli:nth-child(3){animation-delay:.3s}
+.tld{width:28px;height:28px;border-radius:50%;background:var(--blue-light);color:var(--blue);display:grid;place-items:center;font-size:14px}
+
+/* ── admin ── */
+.ad{display:flex;flex-direction:column;gap:12px}
+.snv{padding:12px;background:var(--white);border:1px solid var(--line);border-radius:var(--r)}
+.sl-i{display:flex;align-items:center;gap:8px;padding:10px;border-radius:8px;color:var(--gray);font-weight:700;font-size:13px}
+.sl-i.on{color:var(--blue);background:var(--blue-light)}
+.sg{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+.st{padding:14px;background:var(--white);border:1px solid var(--line);border-radius:var(--r)}
+.st-v{font-size:24px;font-weight:800;color:var(--dark);margin-top:4px}
+.tw{overflow-x:auto;border-radius:var(--r);border:1px solid var(--line);-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;min-width:580px;background:var(--white)}
+th,td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:middle;font-size:13px}
+th{color:var(--gray);background:#f3f4f6;font-size:11px;text-transform:uppercase;letter-spacing:.05em}
+tr:last-child td{border-bottom:0}
+.cp{height:6px;width:80px;border-radius:999px;background:#e5e7eb;overflow:hidden}
+.cp span{display:block;height:100%;background:var(--blue)}
+
+/* ── toast ── */
+.toast{position:fixed;right:16px;bottom:16px;background:var(--dark);color:var(--white);padding:12px 16px;border-radius:var(--r);box-shadow:var(--shadow);display:none;z-index:50;font-weight:600;font-size:14px;max-width:90vw}
+.toast.sh{display:block;animation:toastIn .25s ease}
+@keyframes toastIn{from{opacity:0;transform:translateY(16px) scale(.95)}to{opacity:1;transform:translateY(0) scale(1)}}
+
+/* ── no data ── */
+.nd{padding:20px;text-align:center;background:var(--white);border:1px solid var(--line);border-radius:var(--r)}
+.nd h3{margin-bottom:4px}
+.nd p{font-size:13px}
+
+/* ── tablet+ ── */
+@media(min-width:640px){
+.mn{padding:20px 24px 48px}
+.hdr-in{padding:12px 24px}
+.fg{grid-template-columns:repeat(3,1fr);gap:12px}
+.sp{min-width:64px;font-size:11px}
+.sp-n{width:30px;height:30px}
+.sp-ln{min-width:18px;max-width:36px}
+.l3{flex-direction:row;gap:14px;align-items:start}
+.l3 .fltrs{order:0;width:220px;flex-shrink:0}
+.l3 .dt{order:0;width:240px;flex-shrink:0}
+.l3 .mg{flex:1}
+.mg{grid-template-columns:1fr 1fr}
+.fl{flex-direction:row;gap:16px;align-items:start}
+.fl form{flex:1}
+.fl .sc{width:280px;flex-shrink:0;position:sticky;top:70px}
+.sl{flex-direction:row;gap:16px;align-items:start}
+.sl .spn{flex:1}
+.sl .sc{width:280px;flex-shrink:0;position:sticky;top:70px}
+.ad{flex-direction:row;gap:14px;align-items:start}
+.ad .snv{width:180px;flex-shrink:0;position:sticky;top:70px}
+.ad>div{flex:1}
+.sg{grid-template-columns:repeat(4,1fr)}
+h1{font-size:32px}
+h2{font-size:26px}
+.mv{margin-top:0;min-height:120px}
+}
+
+@media(min-width:900px){
+.fg{grid-template-columns:repeat(3,1fr);gap:14px}
+}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <div class="hdr-in">
+    <a class="brand" href="#fields">
+      <span class="brand-s">🎓</span>
+      <span><span>BIUST</span><span class="sub">Mentorship</span></span>
+    </a>
+    <nav class="nav">
+      <button class="nav-b on" data-n="fields">🔍 Fields</button>
+      <button class="nav-b" data-n="mentors">👥 Mentors</button>
+      <button class="nav-b" data-n="request">📩 Request</button>
+      <button class="nav-b" data-n="admin">⚙️ Admin</button>
+    </nav>
+    <div class="user">👤 <span>Student</span></div>
+  </div>
+</header>
+
+<main class="mn">
+
+<!-- Step 1: Fields -->
+<section class="scr on" id="fields">
+  <div class="stepr">
+    <div class="sp on"><div class="sp-n">1</div><span>Field</span></div>
+    <div class="sp-ln"></div>
+    <div class="sp"><div class="sp-n">2</div><span>Mentor</span></div>
+    <div class="sp-ln"></div>
+    <div class="sp"><div class="sp-n">3</div><span>Request</span></div>
+    <div class="sp-ln"></div>
+    <div class="sp"><div class="sp-n">4</div><span>Confirm</span></div>
+  </div>
+  <div class="ph">
+    <p class="ey">Step 1 of 4</p>
+    <h1>Find your mentor</h1>
+    <p class="ld">Pick a field to discover mentors who match your goals.</p>
+  </div>
+  <div class="fg" id="fg"></div>
+  <div class="mv">
+    <div class="mv-n">15</div>
+    <div class="mv-p">verified mentors across BIUST departments & industry</div>
+  </div>
+</section>
+
+<!-- Step 2: Mentors -->
+<section class="scr" id="mentors">
+  <div class="stepr">
+    <div class="sp done"><div class="sp-n">✓</div><span>Field</span></div>
+    <div class="sp-ln done"></div>
+    <div class="sp on"><div class="sp-n">2</div><span>Mentor</span></div>
+    <div class="sp-ln"></div>
+    <div class="sp"><div class="sp-n">3</div><span>Request</span></div>
+    <div class="sp-ln"></div>
+    <div class="sp"><div class="sp-n">4</div><span>Confirm</span></div>
+  </div>
+  <div class="ph">
+    <p class="ey">Step 2 of 4</p>
+    <h2>Select a mentor</h2>
+    <p class="ld">Choose someone who fits your goals and availability.</p>
+  </div>
+  <div class="l3">
+    <aside class="fltrs">
+      <h3>Filters</h3>
+      <div><label class="lb" for="ff">Field</label><select class="in" id="ff"></select></div>
+      <div class="fg-r"><span class="lb">Expertise</span>
+        <label class="cr"><input type="checkbox" name="sk" value="AI" checked> 🤖 AI</label>
+        <label class="cr"><input type="checkbox" name="sk" value="Data" checked> 📊 Data</label>
+        <label class="cr"><input type="checkbox" name="sk" value="Web"> 🌐 Web</label>
+        <label class="cr"><input type="checkbox" name="sk" value="Security"> 🔒 Security</label>
+        <label class="cr"><input type="checkbox" name="sk" value="Mechanical"> ⚙️ Mechanical</label>
+      </div>
+      <div class="fg-r"><span class="lb">Availability</span>
+        <label class="cr"><input type="checkbox" id="av"> ✅ Available now</label>
+      </div>
+      <button class="btn btn-g btn-full" id="rst">🔄 Reset</button>
+    </aside>
+    <div>
+      <div class="sr"><input class="in" id="ms" type="search" placeholder="Search mentors..."></div>
+      <div class="mg" id="mg"></div>
+    </div>
+    <aside class="dt" id="dt"></aside>
+  </div>
+</section>
+
+<!-- Step 3: Request -->
+<section class="scr" id="request">
+  <div class="stepr">
+    <div class="sp done"><div class="sp-n">✓</div><span>Field</span></div>
+    <div class="sp-ln done"></div>
+    <div class="sp done"><div class="sp-n">✓</div><span>Mentor</span></div>
+    <div class="sp-ln done"></div>
+    <div class="sp on"><div class="sp-n">3</div><span>Request</span></div>
+    <div class="sp-ln"></div>
+    <div class="sp"><div class="sp-n">4</div><span>Confirm</span></div>
+  </div>
+  <div class="ph">
+    <p class="ey">Step 3 of 4</p>
+    <h2>Request mentorship</h2>
+    <p class="ld">Tell us about yourself so your mentor can help.</p>
+  </div>
+  <div class="fl">
+    <form class="sc" id="rf">
+      <div class="fg2">
+        <label><span class="lb">Name</span><input class="in" required name="n" value="Kabelo M."></label>
+        <label><span class="lb">Year</span>
+          <select class="in" name="y">
+            <option>1st</option><option selected>2nd</option><option>3rd</option><option>4th</option><option>Grad</option>
+          </select>
+        </label>
+        <label><span class="lb">Program</span><input class="in" required name="p" value="Computer Science"></label>
+        <label><span class="lb">Meeting</span>
+          <select class="in" name="m">
+            <option selected>📹 Online</option><option>🏫 On campus</option><option>📧 Email</option>
+          </select>
+        </label>
+        <label class="fw"><span class="lb">Why mentorship?</span><textarea class="ta" required name="r">I want to build a portfolio and prepare for tech internships.</textarea></label>
+        <label class="fw"><span class="lb">3-month goals</span><textarea class="ta" name="g">Complete 2 projects and improve interview skills.</textarea></label>
+      </div>
+      <div class="ac"><button class="btn btn-p" type="submit">📤 Send Request</button></div>
+    </form>
+    <aside class="sc" id="rs"></aside>
+  </div>
+</section>
+
+<!-- Step 4: Confirmation -->
+<section class="scr" id="confirmation">
+  <div class="stepr">
+    <div class="sp done"><div class="sp-n">✓</div><span>Field</span></div>
+    <div class="sp-ln done"></div>
+    <div class="sp done"><div class="sp-n">✓</div><span>Mentor</span></div>
+    <div class="sp-ln done"></div>
+    <div class="sp done"><div class="sp-n">✓</div><span>Request</span></div>
+    <div class="sp-ln done"></div>
+    <div class="sp on"><div class="sp-n">✓</div><span>Confirm</span></div>
+  </div>
+  <div class="ph">
+    <p class="ey">Step 4 of 4</p>
+    <h2>Request sent!</h2>
+    <p class="ld">Your mentor will respond within 2 days.</p>
+  </div>
+  <div class="sl">
+    <div class="sc spn">
+      <div class="sm">✓</div>
+      <h2>In review</h2>
+      <p>The mentor will check your profile and goals.</p>
+      <div class="tl">
+        <div class="tli"><div class="tld">📬</div><div><strong>Submitted</strong><p>We notified your mentor.</p></div></div>
+        <div class="tli"><div class="tld">👀</div><div><strong>Review</strong><p>Mentor reviews your request.</p></div></div>
+        <div class="tli"><div class="tld">📅</div><div><strong>Scheduled</strong><p>You'll get next steps via portal.</p></div></div>
+      </div>
+      <div class="ac"><button class="btn btn-p" data-go="fields">🏠 New Request</button></div>
+    </div>
+    <aside class="sc" id="cs"></aside>
+  </div>
+</section>
+
+<!-- Admin -->
+<section class="scr" id="admin">
+  <div class="ph">
+    <p class="ey">Institutional Portal</p>
+    <h2>Mentor management</h2>
+    <p class="ld">Oversee mentors, capacity, and activity.</p>
+  </div>
+  <div class="ad">
+    <aside class="snv">
+      <div class="sl-i on">📊 Dashboard</div>
+      <div class="sl-i">🎓 Mentors</div>
+      <div class="sl-i">👥 Students</div>
+      <div class="sl-i">📈 Reports</div>
+      <button class="btn btn-p btn-full" style="margin-top:12px">➕ Add</button>
+    </aside>
+    <div>
+      <div class="sg">
+        <div class="st"><span class="lb">Total</span><div class="st-v">15</div></div>
+        <div class="st"><span class="lb">Active</span><div class="st-v">18</div></div>
+        <div class="st"><span class="lb">Full</span><div class="st-v">7</div></div>
+        <div class="st"><span class="lb">Response</span><div class="st-v">1.8d</div></div>
+      </div>
+      <div class="sc">
+        <div class="sr"><input class="in" id="as" type="search" placeholder="Search..."></div>
+        <div class="tw"><table><thead><tr><th>Name</th><th>Dept</th><th>Load</th><th>Status</th></tr></thead><tbody id="ar"></tbody></table></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const fields=[
+{id:"Computing & Informatics",e:"💻",n:6,c:"Software, AI, data, security"},
+{id:"Engineering",e:"⚙️",n:5,c:"Mechanical, electrical, civil, energy"},
+{id:"Natural & Applied Sciences",e:"🔬",n:4,c:"Biology, chemistry, physics, research"}
+];
+
+const mentors=[
+{name:"Dr. Thabo Mbeki",i:"TM",f:"Computing & Informatics",r:"Sr. Software Engineer",d:"Computing & IS",sk:["AI","Web","Data"],a:"Now",av:1,st:5,ca:8,b:"Builds AI systems. Mentors portfolio & internships."},
+{name:"Dr. Emily Chen",i:"EC",f:"Computing & Informatics",r:"Data Science Lead",d:"Computing & IS",sk:["Data","AI"],a:"Fri",av:0,st:4,ca:6,b:"Data storytelling, ML project scoping."},
+{name:"Mr. Kabelo Dube",i:"KD",f:"Computing & Informatics",r:"Cybersecurity Analyst",d:"Computing & IS",sk:["Security","Web"],a:"Mon",av:0,st:2,ca:5,b:"Cloud security, entry-level certs."},
+{name:"Dr. Naomi Wanjiku",i:"NW",f:"Computing & Informatics",r:"AI Research Scientist",d:"Computing & IS",sk:["AI","Data","Research"],a:"Now",av:1,st:3,ca:6,b:"NLP research. Guides AI ethics & publishing."},
+{name:"Mr. Tumi Lesego",i:"TL",f:"Computing & Informatics",r:"Full-Stack Dev",d:"Computing & IS",sk:["Web","Data"],a:"Tue",av:0,st:6,ca:7,b:"React, Node.js. Portfolio projects."},
+{name:"Dr. Fatima Bello",i:"FB",f:"Computing & Informatics",r:"ML Engineer",d:"Computing & IS",sk:["AI","Data","Security"],a:"Now",av:1,st:4,ca:8,b:"ML security. Mentors ML fundamentals."},
+{name:"Prof. Sarah Jenkins",i:"SJ",f:"Engineering",r:"Mech. Design Prof.",d:"Mechanical Eng.",sk:["Mechanical","Manufacturing"],a:"Now",av:1,st:7,ca:8,b:"Design reviews, feasibility, engineering careers."},
+{name:"Engr. Craig Moyo",i:"CM",f:"Engineering",r:"Civil Engineer",d:"Civil & Env.",sk:["Mechanical","Manufacturing"],a:"Thu",av:0,st:3,ca:6,b:"Structural design, sustainable infrastructure."},
+{name:"Dr. Lerato Nkosi",i:"LN",f:"Engineering",r:"Electrical Engineer",d:"Electrical & Elec.",sk:["Mechanical","Research"],a:"Now",av:1,st:5,ca:7,b:"Power systems, renewable energy."},
+{name:"Prof. James Ochieng",i:"JO",f:"Engineering",r:"Energy Professor",d:"Mechanical Eng.",sk:["Manufacturing","Research"],a:"Mon",av:0,st:4,ca:5,b:"Solar thermal, energy efficiency."},
+{name:"Engr. Boitumelo Seth",i:"BS",f:"Engineering",r:"Mechatronics Lead",d:"Mechanical Eng.",sk:["Mechanical","Manufacturing","AI"],a:"Now",av:1,st:6,ca:8,b:"Robotics, AI control systems."},
+{name:"Dr. Kevin Botha",i:"KB",f:"Natural & Applied Sciences",r:"Environmental Scientist",d:"Natural Sciences",sk:["Research","Data"],a:"Wed",av:0,st:6,ca:6,b:"Field research, scientific writing."},
+{name:"Dr. Palesa Molefe",i:"PM",f:"Natural & Applied Sciences",r:"Biochemist",d:"Natural Sciences",sk:["Research","Data"],a:"Now",av:1,st:3,ca:7,b:"Protein research, lab techniques."},
+{name:"Dr. Chidi Okonkwo",i:"CO",f:"Natural & Applied Sciences",r:"Materials Scientist",d:"Natural Sciences",sk:["Research","Manufacturing"],a:"Fri",av:0,st:4,ca:5,b:"Polymers, nanomaterials characterization."},
+{name:"Dr. Grace Matsunhe",i:"GM",f:"Natural & Applied Sciences",r:"Ecologist",d:"Natural Sciences",sk:["Research","Data"],a:"Now",av:1,st:2,ca:5,b:"Biodiversity, ecosystem modeling."},
+];
+
+const st={f:fields[0].id,sm:mentors[0],sort:1,lr:null};
+const scr=document.querySelectorAll(".scr");
+const nb=document.querySelectorAll("[data-n]");
+const tt=document.getElementById("toast");
+
+function msg(m){tt.textContent=m;tt.classList.add("sh");setTimeout(()=>tt.classList.remove("sh"),2200)}
+
+function go(id){
+  scr.forEach(s=>s.classList.toggle("on",s.id===id));
+  nb.forEach(b=>b.classList.toggle("on",b.dataset.n===id));
+  if(id==="confirmation")nb.forEach(b=>b.classList.remove("on"));
+  location.hash=id;window.scrollTo({top:0,behavior:"smooth"})
+}
+
+document.addEventListener("click",e=>{
+  let t=e.target.closest("[data-go]");
+  if(t)go(t.dataset.go);
+  t=e.target.closest("[data-n]");
+  if(t)go(t.dataset.n)
+});
+
+function rfld(){
+  const g=document.getElementById("fg");
+  g.innerHTML=fields.map((f,i)=>`
+    <button class="fc ${f.id===st.f?"on":""}" data-f="${f.id}" style="animation-delay:${i*.05}s">
+      <span class="fc-i">${f.e}</span>
+      <h3>${f.id}</h3>
+      <p>${f.c}</p>
+      <div class="fc-m">${f.n} mentors</div>
+    </button>`).join("");
+  document.getElementById("ff").innerHTML=fields.map(f=>`<option ${f.id===st.f?"selected":""}>${f.id}</option>`).join("")
+}
+
+document.getElementById("fg").addEventListener("click",e=>{
+  const c=e.target.closest("[data-f]");if(!c)return;
+  st.f=c.dataset.f;rfld();rMent();msg(`${st.f} selected`);go("mentors")
+});
+
+document.getElementById("ff").addEventListener("change",e=>{st.f=e.target.value;rfld();rMent()});
+
+function sk(){return[...document.querySelectorAll("input[name='sk']:checked")].map(i=>i.value)}
+
+function fM(){
+  const q=document.getElementById("ms").value.trim().toLowerCase();
+  const s=sk();const av=document.getElementById("av").checked;
+  return mentors.filter(m=>m.f===st.f).filter(m=>!av||m.av).filter(m=>!s.length||m.sk.some(k=>s.includes(k))).filter(m=>{
+    const h=[m.name,m.r,m.d,m.sk.join(" "),m.b].join(" ").toLowerCase();return!q||h.includes(q)
+  }).sort((a,b)=>st.sort?a.name.localeCompare(b.name):b.name.localeCompare(a.name))
+}
+
+function rMent(){
+  const l=fM();
+  if(!l.includes(st.sm)&&l.length)st.sm=l[0];
+  const g=document.getElementById("mg");
+  g.innerHTML=l.length?l.map((m,i)=>`
+    <button class="mc ${m.name===st.sm.name?"on":""}" data-m="${m.name}" style="animation-delay:${Math.min(i*.04,.4)}s">
+      <div class="mt"><span class="av ${i%3===1?"b":i%3===2?"c":""}">${m.i}<span class="sd ${m.av?"":"w"}"></span></span><span><p class="mn">${m.name}</p><p class="mr">${m.r}</p></span></div>
+      <span class="tg ${m.av?"g":"a"}">${m.a}</span>
+      <div class="tr">${m.sk.map(k=>`<span class="tg">${k}</span>`).join("")}</div>
+    </button>`).join(""):`<div class="nd"><h3>No mentors</h3><p>Try different filters.</p></div>`;
+  rDet();rSum();rAdm()
+}
+
+document.getElementById("mg").addEventListener("click",e=>{
+  const c=e.target.closest("[data-m]");if(!c)return;
+  st.sm=mentors.find(m=>m.name===c.dataset.m);rMent()
+});
+
+["ms","av"].forEach(id=>{
+  document.getElementById(id).addEventListener("input",rMent);
+  document.getElementById(id).addEventListener("change",rMent)
+});
+document.querySelectorAll("input[name='sk']").forEach(i=>i.addEventListener("change",rMent));
+document.getElementById("rst").addEventListener("click",()=>{
+  document.querySelectorAll("input[name='sk']").forEach(i=>i.checked=["AI","Data"].includes(i.value));
+  document.getElementById("av").checked=0;document.getElementById("ms").value="";rMent()
+});
+
+function rDet(){
+  const m=st.sm;
+  document.getElementById("dt").innerHTML=`
+    <div class="dt-p"></div>
+    <div class="mt"><span class="av">${m.i}<span class="sd ${m.av?"":"w"}"></span></span><span><p class="mn">${m.name}</p><p class="mr">${m.r}</p></span></div>
+    <p style="margin:8px 0">${m.b}</p>
+    <div class="tr"><span class="tg ${m.av?"g":"a"}">${m.a}</span><span class="tg y">${m.st}/${m.ca} students</span></div>
+    <div class="ac"><button class="btn btn-p" data-go="request">📨 Request</button></div>`
+}
+
+function mHtml(t){
+  const m=st.sm;
+  return`<h3>${t}</h3>
+    <div class="mt" style="margin-top:12px"><span class="av">${m.i}<span class="sd ${m.av?"":"w"}"></span></span><span><p class="mn">${m.name}</p><p class="mr">${m.r}</p></span></div>
+    <p style="font-size:13px;margin:8px 0">${m.b}</p>
+    <div class="tr"><span class="tg">${m.f}</span><span class="tg ${m.av?"g":"a"}">${m.a}</span></div>`
+}
+
+function rSum(){document.getElementById("rs").innerHTML=mHtml("Your mentor");document.getElementById("cs").innerHTML=mHtml("Summary")}
+
+document.getElementById("rf").addEventListener("submit",e=>{e.preventDefault();st.lr=Object.fromEntries(new FormData(e.target).entries());go("confirmation");msg("Request sent!")});
+
+function rAdm(){
+  const q=document.getElementById("as").value.trim().toLowerCase();
+  const r=mentors.filter(m=>{const h=[m.name,m.d,m.f,m.a].join(" ").toLowerCase();return!q||h.includes(q)});
+  document.getElementById("ar").innerHTML=r.map(m=>{
+    const p=Math.round(m.st/m.ca*100),fl=m.st>=m.ca;
+    return`<tr><td><div class="mt" style="margin:0"><span class="av" style="width:30px;height:30px;font-size:11px">${m.i}</span><span><p class="mn">${m.name}</p><p class="mr">${m.r}</p></span></div></td>
+    <td>${m.d}</td><td>${m.st}/${m.ca}</td><td><span class="tg ${fl?"r":m.av?"g":"a"}">${fl?"Full":m.a}</span></td></tr>`
+  }).join("")
+}
+
+document.getElementById("as").addEventListener("input",rAdm);
+
+const h=location.hash.replace("#","");
+rfld();rMent();rAdm();
+if(h&&document.getElementById(h))go(h);
+</script>
+</body>
+</html>

@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>BIUST Mentorship - Select Your Mentor</title>
+<!-- Plus Jakarta Sans Font -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 with plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#0052ff',
+            surface: '#f7f9fb',
+            'surface-container': '#ffffff',
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          borderRadius: {
+            'custom': '8px',
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="custom-layout">
+    body {
+      background-color: #f7f9fb;
+    }
+    .active-step-line {
+      background: linear-gradient(to right, #0052ff 50%, #d1d5db 50%);
+    }
+    .scrollbar-hide::-webkit-scrollbar {
+      display: none;
+    }
+  </style>
+</head>
+<body class="font-sans text-slate-900">
+<!-- BEGIN: MainHeader -->
+<header class="bg-white border-b border-slate-200 sticky top-0 z-50">
+<div class="max-w-[1440px] mx-auto px-6 py-4 flex items-center justify-between">
+<!-- Logo and Branding -->
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-slate-100 rounded-md flex items-center justify-center overflow-hidden">
+<img alt="BIUST Logo" class="object-cover w-8 h-8" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBI0-UZPBvUArkv2eOSoDxVCiblk3sbFIeaVmOeMpU602q-CHqe_GJ_9_tXS_K_PQAMFAFY9rsCnIIu4-njGmrVqgl3Ocemni64YZU8f-WpShN_dniCyeejVgI_oYRcemyduZu4ddaNd5qTiCr1RjEFG2wY5sbH2iLaxLZDg6TAUc3-LIdaacNJt8kfoGUS3csNgskPYw3n_zlfER4pic00z7WEzMftNsrL7axWwtpISqB55wlZx_WBrtfb8W1gZjCEaWXgZX3SrcD6"/>
+</div>
+<div>
+<h1 class="font-extrabold text-xl leading-tight">BIUST Mentorship</h1>
+<p class="text-xs text-slate-500 font-medium">Guidance today. Success tomorrow.</p>
+</div>
+</div>
+<!-- Navigation Links -->
+<nav class="flex items-center gap-8 font-semibold">
+<a class="text-slate-600 hover:text-primary transition-colors" href="#">Home</a>
+<div class="relative">
+<a class="text-primary" href="#">Mentors</a>
+<span class="absolute -bottom-5 left-0 w-full h-1 bg-primary rounded-full"></span>
+</div>
+<a class="text-slate-600 hover:text-primary transition-colors" href="#">About</a>
+<button class="p-2 text-slate-600 hover:bg-slate-100 rounded-full transition-colors">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.963-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+</nav>
+</div>
+</header>
+<!-- END: MainHeader -->
+<!-- BEGIN: SelectionHeader & Progress Tracker -->
+<section class="max-w-[1440px] mx-auto px-6 pt-10 pb-6">
+<div class="flex flex-col items-center mb-10">
+<h2 class="text-4xl font-extrabold text-slate-900 mb-2">Select your mentor</h2>
+<p class="text-slate-500 font-medium">Choose from verified BIUST professionals</p>
+</div>
+<!-- Progress Steps -->
+<div class="flex items-center justify-center max-w-2xl mx-auto mb-12">
+<!-- Step 1 -->
+<div class="flex flex-col items-center">
+<div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center mb-2 shadow-lg shadow-blue-200">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="m4.5 12.75 6 6 9-13.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<span class="text-xs font-bold text-slate-900">Field</span>
+</div>
+<div class="h-0.5 w-16 bg-primary mx-2"></div>
+<!-- Step 2 (Active) -->
+<div class="flex flex-col items-center">
+<div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center mb-2 shadow-lg shadow-blue-200">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<span class="text-xs font-bold text-slate-900">Select Mentor</span>
+</div>
+<div class="h-0.5 w-16 bg-slate-200 mx-2"></div>
+<!-- Step 3 -->
+<div class="flex flex-col items-center">
+<div class="w-10 h-10 rounded-full border-2 border-slate-200 text-slate-400 flex items-center justify-center mb-2 bg-white">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<span class="text-xs font-bold text-slate-400">Request</span>
+</div>
+<div class="h-0.5 w-16 bg-slate-200 mx-2"></div>
+<!-- Step 4 -->
+<div class="flex flex-col items-center">
+<div class="w-10 h-10 rounded-full border-2 border-slate-200 text-slate-400 flex items-center justify-center mb-2 bg-white">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<span class="text-xs font-bold text-slate-400">Confirmation</span>
+</div>
+</div>
+</section>
+<!-- END: SelectionHeader & Progress Tracker -->
+<!-- BEGIN: MainContent -->
+<main class="max-w-[1440px] mx-auto px-6 pb-20">
+<div class="grid grid-cols-12 gap-8 items-start">
+<!-- LEFT COLUMN: Filters -->
+<aside class="col-span-12 lg:col-span-3 bg-white p-6 rounded-custom border border-slate-200 shadow-sm" data-purpose="filter-sidebar">
+<div class="flex items-center justify-between mb-6">
+<h3 class="font-bold text-lg">Filters</h3>
+<svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M10.5 6h9.75M10.5 6a1.5 1.5 0 1 1-3 0m3 0a1.5 1.5 0 1 0-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-9.75 0h9.75" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<!-- Field Section -->
+<div class="mb-8">
+<label class="block text-sm font-bold mb-3">Field</label>
+<div class="relative">
+<select class="w-full pl-10 pr-4 py-2 border border-slate-200 rounded-custom appearance-none text-slate-700 bg-slate-50 focus:ring-primary focus:border-primary">
+<option>Computing &amp; Informatics</option>
+</select>
+<div class="absolute left-3 top-1/2 -translate-y-1/2 text-primary">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+</div>
+</div>
+<!-- Expertise Section -->
+<div class="mb-8">
+<label class="block text-sm font-bold mb-3">Expertise</label>
+<div class="space-y-3">
+<label class="flex items-center gap-3 cursor-pointer">
+<input checked="" class="w-5 h-5 rounded border-slate-300 text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-sm font-medium text-slate-700">AI / Machine Learning</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer">
+<input class="w-5 h-5 rounded border-slate-300 text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-sm font-medium text-slate-700">Web Development</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer">
+<input class="w-5 h-5 rounded border-slate-300 text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-sm font-medium text-slate-700">Data Science</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer">
+<input class="w-5 h-5 rounded border-slate-300 text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-sm font-medium text-slate-700">Cybersecurity</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer">
+<input class="w-5 h-5 rounded border-slate-300 text-primary focus:ring-primary" type="checkbox"/>
+<span class="text-sm font-medium text-slate-700">Mobile Development</span>
+</label>
+<button class="text-sm text-slate-500 font-bold flex items-center gap-1 hover:text-primary mt-1">
+              Show more <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m19.5 8.25-7.5 7.5-7.5-7.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</button>
+</div>
+</div>
+<!-- Availability Section -->
+<div class="mb-8">
+<label class="block text-sm font-bold mb-3">Availability</label>
+<div class="space-y-3">
+<label class="flex items-center gap-3 cursor-pointer">
+<input checked="" class="w-5 h-5 border-slate-300 text-primary focus:ring-primary" name="avail" type="radio"/>
+<span class="text-sm font-medium text-slate-700">All</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer">
+<input class="w-5 h-5 border-slate-300 text-primary focus:ring-primary" name="avail" type="radio"/>
+<span class="text-sm font-medium text-slate-700">Available now</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer">
+<input class="w-5 h-5 border-slate-300 text-primary focus:ring-primary" name="avail" type="radio"/>
+<span class="text-sm font-medium text-slate-700">Weekends</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer">
+<input class="w-5 h-5 border-slate-300 text-primary focus:ring-primary" name="avail" type="radio"/>
+<span class="text-sm font-medium text-slate-700">Online only</span>
+</label>
+</div>
+</div>
+<!-- Rating Section -->
+<div class="mb-8">
+<label class="block text-sm font-bold mb-3">Rating</label>
+<div class="flex gap-2">
+<button class="px-4 py-1.5 rounded-full bg-slate-100 text-slate-700 text-sm font-bold hover:bg-slate-200">All</button>
+<button class="px-4 py-1.5 rounded-full bg-slate-100 text-slate-700 text-sm font-bold hover:bg-slate-200">4⭐ &amp; up</button>
+<button class="px-4 py-1.5 rounded-full bg-slate-100 text-slate-700 text-sm font-bold hover:bg-slate-200">3⭐ &amp; up</button>
+</div>
+</div>
+<button class="w-full py-3 text-slate-500 font-bold border border-slate-200 rounded-custom hover:bg-slate-50 transition-colors">
+          Clear filters
+        </button>
+</aside>
+<!-- MIDDLE COLUMN: Mentor Grid -->
+<div class="col-span-12 lg:col-span-6" data-purpose="mentor-listings">
+<!-- Search and Sort Header -->
+<div class="flex gap-4 mb-6">
+<div class="relative flex-grow">
+<input class="w-full pl-12 pr-4 py-3 border border-slate-200 rounded-custom focus:ring-primary focus:border-primary" placeholder="Search mentors..." type="text"/>
+<svg class="w-5 h-5 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<div class="relative">
+<select class="pl-4 pr-10 py-3 border border-slate-200 rounded-custom bg-white appearance-none font-medium text-slate-700 focus:ring-primary">
+<option>Sort by</option>
+</select>
+<svg class="w-4 h-4 text-slate-400 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="m19.5 8.25-7.5 7.5-7.5-7.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<button class="p-3 border border-slate-200 rounded-custom bg-white">
+<svg class="w-6 h-6 text-slate-600" fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M6 13.5V3.75m0 9.75a1.5 1.5 0 0 1 0 3m0-3a1.5 1.5 0 0 0 0 3m0 0V21m6-8.25V3.75m0 9.75a1.5 1.5 0 0 1 0 3m0-3a1.5 1.5 0 0 0 0 3m0 0V21m6-8.25V3.75m0 9.75a1.5 1.5 0 0 1 0 3m0-3a1.5 1.5 0 0 0 0 3m0 0V21" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+</div>
+<!-- Mentor Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+<!-- Card 1 (Selected/Active) -->
+<div class="bg-white border-2 border-primary rounded-custom p-6 relative shadow-sm ring-4 ring-blue-50">
+<div class="absolute top-4 right-4">
+<div class="w-6 h-6 bg-primary rounded-full flex items-center justify-center text-white">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="3" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="m4.5 12.75 6 6 9-13.5" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+</div>
+<div class="flex items-center gap-4 mb-4">
+<div class="relative">
+<div class="w-16 h-16 rounded-full bg-slate-200 overflow-hidden">
+<img alt="Tlotlo Mphato" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAON97J21Z6YunUVZGStqRGM4DqRPYYtiI-78EtrcHC6VkLMRN0xVK_X9TNoMmVMnRQL8hVeBk6_4rbYen0wxTS_8YsuFVtXfxk7xtKeJAu6euCGXkL2bt9RSqs-CRLjsalhUvo3oKHiE9zNKcawKSbwZDQ8YpSv5odOlpJdsZaSlPJ9B4vxjUnrN3LwjEHZryOuxR1nug38SBxrkQx0BCvGZRaXe1evsKJEWX9EMHiPq_ZTtlc0NrNl_UFYqgQuQDo8VRRjxSFLZc"/>
+</div>
+<span class="absolute bottom-0 right-0 w-4 h-4 bg-green-500 border-2 border-white rounded-full"></span>
+</div>
+<div>
+<div class="flex items-center gap-1">
+<h4 class="font-extrabold text-slate-900">Tlotlo Mphato</h4>
+<svg class="w-4 h-4 text-primary" fill="currentColor" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.64.304 1.24.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" fill-rule="evenodd"></path></svg>
+</div>
+<p class="text-xs text-slate-500 font-medium">AI Engineer @ FNB Botswana</p>
+<div class="flex items-center gap-1 mt-1">
+<span class="text-xs font-bold text-yellow-500">⭐ 5.0</span>
+<span class="text-[10px] text-slate-400">(28 reviews)</span>
+</div>
+</div>
+</div>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="px-2 py-1 bg-blue-50 text-blue-600 text-[10px] font-bold rounded">AI/ML</span>
+<span class="px-2 py-1 bg-blue-50 text-blue-600 text-[10px] font-bold rounded">Python</span>
+<span class="px-2 py-1 bg-blue-50 text-blue-600 text-[10px] font-bold rounded">NLP</span>
+<span class="px-2 py-1 bg-blue-50 text-blue-600 text-[10px] font-bold rounded">LLMs</span>
+</div>
+<p class="text-xs text-slate-600 leading-relaxed mb-6">
+              Specializes in ML systems, LLMs and real-world AI applications.
+            </p>
+<div class="flex items-center justify-between pt-4 border-t border-slate-100">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-green-500"></span>
+<span class="text-[11px] font-bold text-green-600">Available now</span>
+<span class="text-[10px] text-slate-400 font-medium ml-2">Online</span>
+</div>
+<a class="text-[11px] font-bold text-primary flex items-center gap-1 hover:underline" href="#">
+                View Profile <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</a>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-white border border-slate-200 rounded-custom p-6 relative shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-center gap-4 mb-4">
+<div class="relative">
+<div class="w-16 h-16 rounded-full bg-slate-200 overflow-hidden">
+<img alt="Lesgo Kgosi" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnArfPDsAj0sJtl4y1QmESo84UyO8OVH0-7JcUdOumMWKbCmmXO_Q_SCxic-RmqqwiO-ah8zh6ilC7b5cbFhQDZpLZwGMzLRcl4u9dtviqNvUMNep8AxfG8E3gNDmJlXLITc_b3NvW8GFK4XCBKwiEMInc_hLscqQHcxjWLiWiD-PDm7w98nENmapZ3DTQaPzF5rY5L9syozdu2WrNQMgd_o22r5KAZLVxbNSi5ZDp_I4n43bxPqvcfYrDS8R5gIY7rt1RP5GfjZ1x"/>
+</div>
+<span class="absolute bottom-0 right-0 w-4 h-4 bg-yellow-500 border-2 border-white rounded-full"></span>
+</div>
+<div>
+<div class="flex items-center gap-1">
+<h4 class="font-extrabold text-slate-900">Lesgo Kgosi</h4>
+<svg class="w-4 h-4 text-primary" fill="currentColor" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.64.304 1.24.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" fill-rule="evenodd"></path></svg>
+</div>
+<p class="text-xs text-slate-500 font-medium">Data Scientist @ Letshego</p>
+<div class="flex items-center gap-1 mt-1">
+<span class="text-xs font-bold text-yellow-500">⭐ 4.8</span>
+<span class="text-[10px] text-slate-400">(19 reviews)</span>
+</div>
+</div>
+</div>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="px-2 py-1 bg-green-50 text-green-600 text-[10px] font-bold rounded">Data Science</span>
+<span class="px-2 py-1 bg-green-50 text-green-600 text-[10px] font-bold rounded">SQL</span>
+<span class="px-2 py-1 bg-green-50 text-green-600 text-[10px] font-bold rounded">Python</span>
+</div>
+<p class="text-xs text-slate-600 leading-relaxed mb-6">
+              Helping students break into data with real projects.
+            </p>
+<div class="flex items-center justify-between pt-4 border-t border-slate-100">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-yellow-500"></span>
+<span class="text-[11px] font-bold text-yellow-600">Available Fri</span>
+<span class="text-[10px] text-slate-400 font-medium ml-2">Online</span>
+</div>
+<a class="text-[11px] font-bold text-primary flex items-center gap-1 hover:underline" href="#">
+                View Profile <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</a>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-white border border-slate-200 rounded-custom p-6 relative shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-center gap-4 mb-4">
+<div class="relative">
+<div class="w-16 h-16 rounded-full bg-slate-200 overflow-hidden">
+<img alt="Boitumelo Pheko" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWGBpaKRZxY_f3JCkNt8giz_dOY1_8z0mhK6fbkfuoQET2xbBlGzbAMjYcrntxRQMXeq1Z1RMoZfinCo8FjuumGBKmSXlJEDrgvpW6HuSFHArVaediSYgHjvtLcCMhYE7YgX9vtl2GTnTjMgkYXtBJ_HMlcM6gSwPu1Y8hFsGh_OwBCXQxa9XSg4r3XIzui7xw5q32mRsetqpqNrh97VliH7Qk7bKvIcfQzoWuJSwiEQ27JyeBCAOtGcpfeNlIFBN_3Xh9lvH_3CrG"/>
+</div>
+<span class="absolute bottom-0 right-0 w-4 h-4 bg-purple-500 border-2 border-white rounded-full"></span>
+</div>
+<div>
+<div class="flex items-center gap-1">
+<h4 class="font-extrabold text-slate-900">Boitumelo Pheko</h4>
+<svg class="w-4 h-4 text-primary" fill="currentColor" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.64.304 1.24.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" fill-rule="evenodd"></path></svg>
+</div>
+<p class="text-xs text-slate-500 font-medium">Software Engineer @ Orange</p>
+<div class="flex items-center gap-1 mt-1">
+<span class="text-xs font-bold text-yellow-500">⭐ 4.9</span>
+<span class="text-[10px] text-slate-400">(34 reviews)</span>
+</div>
+</div>
+</div>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="px-2 py-1 bg-purple-50 text-purple-600 text-[10px] font-bold rounded">Web Dev</span>
+<span class="px-2 py-1 bg-purple-50 text-purple-600 text-[10px] font-bold rounded">React</span>
+<span class="px-2 py-1 bg-purple-50 text-purple-600 text-[10px] font-bold rounded">Node.js</span>
+</div>
+<p class="text-xs text-slate-600 leading-relaxed mb-6">
+              Full-stack development &amp; system design enthusiast.
+            </p>
+<div class="flex items-center justify-between pt-4 border-t border-slate-100">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-purple-500"></span>
+<span class="text-[11px] font-bold text-purple-600">Weekend only</span>
+<span class="text-[10px] text-slate-400 font-medium ml-2">Online</span>
+</div>
+<a class="text-[11px] font-bold text-primary flex items-center gap-1 hover:underline" href="#">
+                View Profile <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</a>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="bg-white border border-slate-200 rounded-custom p-6 relative shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-center gap-4 mb-4">
+<div class="relative">
+<div class="w-16 h-16 rounded-full bg-slate-200 overflow-hidden">
+<img alt="Kabelo Setlhare" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyzM5kknX-ooagWpM73AKRAYXhqqbtDlK_dPtOOYyQ7sUfzSYcvpQjQCPNkN8it1WdM3GTluqo6WlnNr8BulN6CNKnHlpMo3GCNBG8G6ORre-fNFmxiksusF4WKT2_aj6IjC7EJv_pqxgi4ZAKPyA191mI4zD9WA3c0WN5KuM5KNkJwuwixvnhH8qxMiSVMtkuVKMZqZpeGkIgEEUK6MmeBXSRPGKex1IojtND7K8iSJqhAWQkI4u2j8J5a9VZd_wrG63zyeWkhbI-"/>
+</div>
+<span class="absolute bottom-0 right-0 w-4 h-4 bg-green-500 border-2 border-white rounded-full"></span>
+</div>
+<div>
+<div class="flex items-center gap-1">
+<h4 class="font-extrabold text-slate-900">Kabelo Setlhare</h4>
+<svg class="w-4 h-4 text-primary" fill="currentColor" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.64.304 1.24.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" fill-rule="evenodd"></path></svg>
+</div>
+<p class="text-xs text-slate-500 font-medium">Cybersecurity Analyst</p>
+<div class="flex items-center gap-1 mt-1">
+<span class="text-xs font-bold text-yellow-500">⭐ 4.7</span>
+<span class="text-[10px] text-slate-400">(16 reviews)</span>
+</div>
+</div>
+</div>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="px-2 py-1 bg-red-50 text-red-600 text-[10px] font-bold rounded">Security</span>
+<span class="px-2 py-1 bg-red-50 text-red-600 text-[10px] font-bold rounded">Network</span>
+<span class="px-2 py-1 bg-red-50 text-red-600 text-[10px] font-bold rounded">Linux</span>
+</div>
+<p class="text-xs text-slate-600 leading-relaxed mb-6">
+              Passionate about securing systems and ethical hacking.
+            </p>
+<div class="flex items-center justify-between pt-4 border-t border-slate-100">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-green-500"></span>
+<span class="text-[11px] font-bold text-green-600">Available now</span>
+<span class="text-[10px] text-slate-400 font-medium ml-2">Online</span>
+</div>
+<a class="text-[11px] font-bold text-primary flex items-center gap-1 hover:underline" href="#">
+                View Profile <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</a>
+</div>
+</div>
+</div>
+<!-- Pagination -->
+<div class="flex items-center justify-center gap-2">
+<button class="p-2 text-slate-400 border border-slate-200 rounded-custom hover:bg-slate-50">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.75 19.5 8.25 12l7.5-7.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</button>
+<button class="w-10 h-10 bg-primary text-white font-bold rounded-custom">1</button>
+<button class="w-10 h-10 text-slate-600 font-bold hover:bg-slate-50 rounded-custom">2</button>
+<button class="w-10 h-10 text-slate-600 font-bold hover:bg-slate-50 rounded-custom">3</button>
+<span class="px-2 text-slate-400">...</span>
+<button class="w-10 h-10 text-slate-600 font-bold hover:bg-slate-50 rounded-custom">7</button>
+<button class="p-2 text-slate-400 border border-slate-200 rounded-custom hover:bg-slate-50">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m8.25 4.5 7.5 7.5-7.5 7.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</button>
+</div>
+</div>
+<!-- RIGHT COLUMN: Selected Mentor Sidebar -->
+<aside class="col-span-12 lg:col-span-3" data-purpose="mentor-detail-sidebar">
+<div class="bg-white rounded-custom border border-slate-200 shadow-xl overflow-hidden sticky top-24">
+<!-- Top Card Header -->
+<div class="relative h-64 bg-slate-900 flex items-center justify-center p-8">
+<div class="absolute inset-0 opacity-40 overflow-hidden">
+<!-- Grid pattern overlay -->
+<div class="w-full h-full opacity-20" style="background-image: radial-gradient(circle, #0052ff 1px, transparent 1px); background-size: 20px 20px;"></div>
+</div>
+<button class="absolute top-4 right-4 p-1.5 bg-black/30 hover:bg-black/50 text-white rounded-full transition-colors z-10">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M6 18 18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</button>
+<!-- Large Profile Pic with Online Ring -->
+<div class="relative z-10">
+<div class="w-32 h-32 rounded-full border-4 border-white/20 p-1">
+<div class="w-full h-full rounded-full bg-slate-400 overflow-hidden">
+<img alt="Tlotlo Mphato Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDK1N_c0iTd8S9WmzIr93E0X9MBenZEydyJBJZbLEobgBJrLUcaCVUCdpsbrUl6GoFmF-gFeOU7u7Yg8hRNF9h3jyxFs247tn5sFdG7fZ8igsgEejBBJvY881N3C5dh1KYbRtUEUzQUZtQW6aIHCY3Hr67x9dD1fROGTTdp_hqw59JzQZ3P8ySUQZHxjPOpy_5odpisMG7FL6PfcEiFzZ-Csn6-ClcpXOpBeTH3O5Kn9LvSRXbP1h45HtFo2tJlqMJyfQTh4Osps7RV"/>
+</div>
+</div>
+<span class="absolute bottom-2 right-2 w-6 h-6 bg-green-500 border-4 border-slate-900 rounded-full"></span>
+</div>
+</div>
+<div class="p-6 text-center">
+<div class="flex items-center justify-center gap-1.5 mb-1">
+<h3 class="text-xl font-extrabold text-slate-900">Tlotlo Mphato</h3>
+<svg class="w-5 h-5 text-primary" fill="currentColor" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.64.304 1.24.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" fill-rule="evenodd"></path></svg>
+</div>
+<p class="text-xs text-slate-500 font-bold mb-3 uppercase tracking-wide">AI Engineer @ FNB Botswana</p>
+<div class="flex items-center justify-center gap-4 text-xs font-bold text-slate-700 mb-6">
+<div class="flex items-center gap-1"><span class="text-yellow-500">⭐ 5.0</span> (28 reviews)</div>
+<div class="w-1 h-1 bg-slate-300 rounded-full"></div>
+<div>42 mentees</div>
+</div>
+<div class="flex items-center justify-center gap-4 mb-8">
+<div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-green-50 border border-green-100">
+<span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+<span class="text-[11px] font-extrabold text-green-700">Available now</span>
+</div>
+<div class="px-3 py-1.5 rounded-full bg-slate-50 border border-slate-100 text-[11px] font-extrabold text-slate-600">
+                Online
+              </div>
+</div>
+<!-- Detailed Info -->
+<div class="text-left space-y-6">
+<div>
+<h4 class="text-xs font-extrabold text-slate-900 mb-3 uppercase tracking-wider">Expertise</h4>
+<div class="flex flex-wrap gap-2">
+<span class="px-2.5 py-1 bg-blue-50 text-blue-700 text-[10px] font-bold rounded">AI/ML</span>
+<span class="px-2.5 py-1 bg-blue-50 text-blue-700 text-[10px] font-bold rounded">Python</span>
+<span class="px-2.5 py-1 bg-blue-50 text-blue-700 text-[10px] font-bold rounded">NLP</span>
+<span class="px-2.5 py-1 bg-blue-50 text-blue-700 text-[10px] font-bold rounded">LLMs</span>
+<span class="px-2.5 py-1 bg-blue-50 text-blue-700 text-[10px] font-bold rounded">MLOps</span>
+</div>
+</div>
+<div>
+<h4 class="text-xs font-extrabold text-slate-900 mb-2 uppercase tracking-wider">About</h4>
+<p class="text-xs text-slate-600 leading-relaxed font-medium">
+                  I help students build practical AI skills through real-world projects and career guidance.
+                </p>
+</div>
+<!-- Stats Grid -->
+<div class="grid grid-cols-3 gap-3 p-4 bg-slate-50 rounded-lg border border-slate-100">
+<div class="text-center">
+<div class="text-sm font-extrabold text-slate-900">4+</div>
+<div class="text-[9px] font-bold text-slate-500 uppercase">Years exp.</div>
+</div>
+<div class="text-center border-x border-slate-200 px-2">
+<div class="text-sm font-extrabold text-slate-900">28</div>
+<div class="text-[9px] font-bold text-slate-500 uppercase">Reviews</div>
+</div>
+<div class="text-center">
+<div class="text-sm font-extrabold text-slate-900">95%</div>
+<div class="text-[9px] font-bold text-slate-500 uppercase">Success rate</div>
+</div>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="mt-8 space-y-3">
+<button class="w-full py-4 bg-primary text-white font-extrabold rounded-custom shadow-lg shadow-blue-200 hover:bg-blue-700 transition-colors flex items-center justify-center gap-2">
+                Send Mentorship Request
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</button>
+<button class="w-full py-3 bg-white text-slate-700 font-bold rounded-custom border border-slate-200 hover:bg-slate-50 transition-colors flex items-center justify-center gap-2">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                Save Mentor
+              </button>
+</div>
+</div>
+</div>
+</aside>
+</div>
+</main>
+<!-- END: MainContent -->
+</body></html>

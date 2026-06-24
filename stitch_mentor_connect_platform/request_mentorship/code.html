@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Request Mentorship | BIUST Mentorship</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Plus+Jakarta+Sans:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed-dim": "#b2c6f7",
+                        "on-tertiary": "#ffffff",
+                        "surface": "#f7f9fb",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-container": "#e3e2ff",
+                        "on-primary-fixed": "#001452",
+                        "on-primary-container": "#dfe3ff",
+                        "on-tertiary-fixed": "#07006c",
+                        "primary-container": "#0052ff",
+                        "primary": "#003ec7",
+                        "primary-fixed": "#dde1ff",
+                        "on-background": "#191c1e",
+                        "on-surface-variant": "#434656",
+                        "inverse-primary": "#b7c4ff",
+                        "on-secondary-container": "#435881",
+                        "error-container": "#ffdad6",
+                        "on-secondary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "inverse-on-surface": "#eff1f3",
+                        "secondary-container": "#bacfff",
+                        "on-tertiary-fixed-variant": "#2f2ebe",
+                        "error": "#ba1a1a",
+                        "surface-container-high": "#e6e8ea",
+                        "background": "#f7f9fb",
+                        "surface-tint": "#004ced",
+                        "outline-variant": "#c3c5d9",
+                        "surface-container": "#eceef0",
+                        "surface-container-low": "#f2f4f6",
+                        "surface-dim": "#d8dadc",
+                        "on-surface": "#191c1e",
+                        "secondary-fixed": "#d8e2ff",
+                        "surface-variant": "#e0e3e5",
+                        "on-primary-fixed-variant": "#0038b6",
+                        "tertiary": "#3737c5",
+                        "primary-fixed-dim": "#b7c4ff",
+                        "outline": "#737688",
+                        "inverse-surface": "#2d3133",
+                        "secondary": "#4a5e88",
+                        "on-error": "#ffffff",
+                        "on-secondary-fixed": "#001a41",
+                        "on-secondary-fixed-variant": "#32466f",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed-dim": "#c0c1ff",
+                        "tertiary-fixed": "#e1e0ff",
+                        "surface-container-highest": "#e0e3e5",
+                        "tertiary-container": "#5153de",
+                        "surface-bright": "#f7f9fb"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "section-gap": "64px",
+                        "margin-desktop": "40px",
+                        "gutter": "24px",
+                        "container-max": "1280px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "body-sm": ["Inter"],
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "label-caps": ["Plus Jakarta Sans"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "label-bold": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "display-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-caps": ["12px", {"lineHeight": "1", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "label-bold": ["14px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .stepper-line {
+            height: 2px;
+            background: #E2E8F0;
+            flex-grow: 1;
+            margin: 0 12px;
+            position: relative;
+            top: 16px;
+        }
+        .stepper-line.active {
+            background: #0052FF;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen font-body-md">
+<!-- TopNavBar -->
+<header class="w-full sticky top-0 z-50 bg-surface-container-lowest border-b border-outline-variant shadow-sm h-20">
+<div class="flex justify-between items-center px-margin-desktop h-full max-w-container-max mx-auto">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-primary-container rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">school</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-md text-headline-md font-bold text-primary">BIUST Mentorship</span>
+<span class="text-[10px] uppercase tracking-wider text-on-surface-variant font-bold leading-none">Guidance today. Success tomorrow.</span>
+</div>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Home</a>
+<a class="font-body-md text-body-md text-primary border-b-2 border-primary pb-1 font-bold" href="#">Mentors</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">About</a>
+<button class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center hover:bg-surface-container-high transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined text-primary">account_circle</span>
+</button>
+</nav>
+</div>
+</header>
+<main class="max-w-container-max mx-auto px-margin-desktop py-12">
+<!-- Header & Back Button -->
+<div class="mb-12">
+<button class="flex items-center gap-2 text-primary hover:gap-3 transition-all duration-300 font-label-bold text-label-bold mb-4">
+<span class="material-symbols-outlined text-[18px]">arrow_back</span>
+                Back to mentor list
+            </button>
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface mb-2">Request Mentorship</h1>
+<p class="text-on-surface-variant font-body-lg text-body-lg max-w-xl">Tell Armaan about your goals and why you'd like to connect. A clear request increases your chances of acceptance.</p>
+</div>
+<!-- Progress Stepper -->
+<div class="flex items-start gap-0 w-full md:w-auto overflow-x-auto pb-4 md:pb-0">
+<!-- Step 1 -->
+<div class="flex flex-col items-center min-w-[100px]">
+<div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white mb-2">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-tighter">Choose Field</span>
+</div>
+<div class="stepper-line active mt-4"></div>
+<!-- Step 2 -->
+<div class="flex flex-col items-center min-w-[100px]">
+<div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white mb-2">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-tighter">Select Mentor</span>
+</div>
+<div class="stepper-line active mt-4"></div>
+<!-- Step 3 (Active) -->
+<div class="flex flex-col items-center min-w-[120px]">
+<div class="w-10 h-10 rounded-full border-2 border-primary bg-primary-fixed flex items-center justify-center text-primary mb-2 shadow-[0_0_15px_rgba(0,82,255,0.2)]">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">assignment</span>
+</div>
+<span class="text-[10px] font-bold text-primary uppercase tracking-tighter">Request Form</span>
+</div>
+<div class="stepper-line mt-4"></div>
+<!-- Step 4 -->
+<div class="flex flex-col items-center min-w-[100px]">
+<div class="w-8 h-8 rounded-full border border-outline bg-surface flex items-center justify-center text-on-surface-variant mb-2">
+<span class="material-symbols-outlined text-[16px]">verified</span>
+</div>
+<span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-tighter">Confirmation</span>
+</div>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<!-- Left: Form Section (9 Columns) -->
+<div class="lg:col-span-8 bg-surface-container-lowest p-8 rounded-xl border border-outline-variant shadow-sm">
+<form class="space-y-8">
+<!-- Section 1: Intent -->
+<div class="space-y-4">
+<label class="flex items-center gap-2 font-label-bold text-label-bold text-on-surface">
+<span class="material-symbols-outlined text-primary">psychology</span>
+                            Reason for Mentorship
+                        </label>
+<textarea class="w-full rounded-lg border-outline-variant bg-surface focus:border-primary focus:ring-1 focus:ring-primary p-4 text-body-md transition-all duration-200" placeholder="Briefly describe what you're looking for (e.g., career guidance, technical skills improvement, or professional networking)." rows="4"></textarea>
+</div>
+<!-- Section 2: Specific Goals -->
+<div class="space-y-4">
+<label class="flex items-center gap-2 font-label-bold text-label-bold text-on-surface">
+<span class="material-symbols-outlined text-primary">target</span>
+                            Specific Goals
+                        </label>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="relative">
+<input class="w-full rounded-lg border-outline-variant bg-surface focus:border-primary focus:ring-1 focus:ring-primary pl-10 py-3" placeholder="Goal 1: Improve React skills" type="text"/>
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[18px]">radio_button_unchecked</span>
+</div>
+<div class="relative">
+<input class="w-full rounded-lg border-outline-variant bg-surface focus:border-primary focus:ring-1 focus:ring-primary pl-10 py-3" placeholder="Goal 2: Mock interview prep" type="text"/>
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[18px]">radio_button_unchecked</span>
+</div>
+</div>
+<button class="text-primary font-label-bold text-label-bold flex items-center gap-1 hover:underline" type="button">
+<span class="material-symbols-outlined text-[18px]">add_circle</span>
+                            Add another goal
+                        </button>
+</div>
+<!-- Section 3: Schedule -->
+<div class="space-y-4">
+<label class="flex items-center gap-2 font-label-bold text-label-bold text-on-surface">
+<span class="material-symbols-outlined text-primary">calendar_month</span>
+                            Proposed Schedule
+                        </label>
+<div class="flex flex-wrap gap-3">
+<label class="cursor-pointer">
+<input class="sr-only peer" name="schedule" type="checkbox" value="mon"/>
+<div class="px-6 py-2 border border-outline-variant rounded-full peer-checked:bg-primary-container peer-checked:text-white peer-checked:border-primary-container hover:bg-surface-container transition-all">Monday</div>
+</label>
+<label class="cursor-pointer">
+<input class="sr-only peer" name="schedule" type="checkbox" value="wed"/>
+<div class="px-6 py-2 border border-outline-variant rounded-full peer-checked:bg-primary-container peer-checked:text-white peer-checked:border-primary-container hover:bg-surface-container transition-all">Wednesday</div>
+</label>
+<label class="cursor-pointer">
+<input class="sr-only peer" name="schedule" type="checkbox" value="sat"/>
+<div class="px-6 py-2 border border-outline-variant rounded-full peer-checked:bg-primary-container peer-checked:text-white peer-checked:border-primary-container hover:bg-surface-container transition-all">Saturday</div>
+</label>
+<label class="cursor-pointer">
+<input class="sr-only peer" name="schedule" type="checkbox" value="sun"/>
+<div class="px-6 py-2 border border-outline-variant rounded-full peer-checked:bg-primary-container peer-checked:text-white peer-checked:border-primary-container hover:bg-surface-container transition-all">Sunday</div>
+</label>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
+<select class="w-full rounded-lg border-outline-variant bg-surface focus:border-primary focus:ring-1 focus:ring-primary py-3">
+<option>Morning (9 AM - 12 PM)</option>
+<option>Afternoon (1 PM - 5 PM)</option>
+<option>Evening (6 PM - 9 PM)</option>
+</select>
+<select class="w-full rounded-lg border-outline-variant bg-surface focus:border-primary focus:ring-1 focus:ring-primary py-3">
+<option>Once a week</option>
+<option>Twice a month</option>
+<option>Project based (Fixed term)</option>
+</select>
+</div>
+</div>
+<!-- Actions -->
+<div class="pt-8 border-t border-outline-variant flex flex-col md:flex-row gap-4 items-center justify-between">
+<button class="flex items-center gap-2 text-on-surface-variant font-label-bold text-label-bold px-6 py-3 hover:bg-surface-container rounded-lg transition-all" type="button">
+                            Save as Draft
+                        </button>
+<button class="bg-primary text-white px-10 py-4 rounded-lg font-label-bold text-label-bold flex items-center gap-3 hover:bg-primary-container transition-all shadow-md active:scale-95 w-full md:w-auto justify-center" type="submit">
+                            Send Mentorship Request
+                            <span class="material-symbols-outlined text-[20px]">send</span>
+</button>
+</div>
+</form>
+</div>
+<!-- Right: Mentor Summary Sidebar (4 Columns) -->
+<aside class="lg:col-span-4 space-y-6">
+<!-- Mentor Card Sticky -->
+<div class="sticky top-24 bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm overflow-hidden">
+<div class="bg-primary-container h-24 relative">
+<div class="absolute inset-0 opacity-10">
+
+</div>
+</div>
+<div class="px-6 pb-6 text-center -mt-12 relative">
+<div class="inline-block relative">
+<img class="w-24 h-24 rounded-full border-4 border-surface-container-lowest object-cover mx-auto shadow-md" data-alt="Professional headshot of a friendly South Asian software engineer named Armaan Khan, wearing a blue shirt, smiling warmly at the camera with a clean office background. The style is high-end corporate photography with soft, natural lighting and shallow depth of field." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKwbbPU_D-wHQ0c9I7ACURZc6zauZfTZadP0QNfhOW_fh1TNW75fEStj3ptfZ-katPwMk4Ld-54V_qtqy7VCNWLL2DJpLonzkddb6wIL1tNUB1h38TdbIavbFuF2ffhdE7UBGaoHhlzjVhiQ-hTRsBgbkC7JTF-Wil521iSfDxWZg5HwrxbMeeH7XOAD2U8Ft_vA_aLTult5d58C2ueJqviXqoJQhke_cB2dmzh-iLCzDoHx2NGVqpD44dW7OeaKofnCRph2uSTtMY"/>
+<div class="absolute bottom-1 right-1 w-5 h-5 bg-green-500 border-2 border-surface-container-lowest rounded-full shadow-sm"></div>
+</div>
+<div class="mt-3 flex flex-col items-center">
+<h3 class="font-headline-md text-headline-md text-on-surface">Armaan Khan <span class="material-symbols-outlined text-primary text-[18px]" style="font-variation-settings: 'FILL' 1;">verified</span></h3>
+<p class="text-on-surface-variant font-body-sm text-body-sm font-semibold">Senior Software Engineer at Google</p>
+</div>
+<div class="mt-6 space-y-4">
+<div class="flex items-center justify-between text-left p-3 rounded-lg bg-surface border border-outline-variant">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">work</span>
+<div>
+<p class="text-[10px] uppercase font-bold text-outline">Experience</p>
+<p class="text-body-sm font-bold text-on-surface">6+ Years</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-[10px] uppercase font-bold text-outline">Alumni</p>
+<p class="text-body-sm font-bold text-on-surface">BUET '17</p>
+</div>
+</div>
+<div class="text-left">
+<p class="text-[12px] font-bold text-on-surface mb-2">Expertise</p>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 bg-primary-fixed text-on-primary-fixed-variant text-[11px] font-bold rounded-full">Software Engineering</span>
+<span class="px-3 py-1 bg-secondary-fixed text-on-secondary-fixed-variant text-[11px] font-bold rounded-full">AI/ML</span>
+<span class="px-3 py-1 bg-tertiary-fixed text-on-tertiary-fixed-variant text-[11px] font-bold rounded-full">System Design</span>
+</div>
+</div>
+</div>
+<div class="mt-8 pt-6 border-t border-outline-variant flex items-center justify-around">
+<div class="text-center">
+<div class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-bold">4.9</span>
+</div>
+<p class="text-[10px] text-on-surface-variant font-medium">(28 reviews)</p>
+</div>
+<div class="h-8 w-[1px] bg-outline-variant"></div>
+<div class="text-center">
+<span class="font-bold text-on-surface">12</span>
+<p class="text-[10px] text-on-surface-variant font-medium">mentees</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Tip Card -->
+<div class="bg-tertiary-container text-white p-6 rounded-xl relative overflow-hidden shadow-md">
+<div class="relative z-10">
+<div class="w-10 h-10 rounded-lg bg-white/20 flex items-center justify-center mb-4">
+<span class="material-symbols-outlined">lightbulb</span>
+</div>
+<h4 class="font-label-bold text-label-bold mb-2">Pro Tip</h4>
+<p class="text-white/90 text-body-sm">Armaan usually responds within 24 hours. Be sure to mention if you have a specific deadline for your goals!</p>
+</div>
+<div class="absolute -right-6 -bottom-6 w-32 h-32 bg-white/5 rounded-full blur-2xl"></div>
+</div>
+</aside>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-section-gap bg-surface-dim mt-section-gap">
+<div class="flex flex-col md:flex-row justify-between items-center px-margin-desktop max-w-container-max mx-auto gap-8">
+<div class="flex flex-col items-center md:items-start">
+<span class="font-label-bold text-label-bold text-primary mb-2">BIUST Mentorship</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">© 2024 BIUST Mentorship. All rights reserved.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-6 md:gap-12">
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:underline decoration-primary transition-all duration-300" href="#">Privacy Policy</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:underline decoration-primary transition-all duration-300" href="#">Terms of Service</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:underline decoration-primary transition-all duration-300" href="#">Support</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:underline decoration-primary transition-all duration-300" href="#">Contact Us</a>
+</div>
+<div class="flex gap-4">
+<div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center hover:bg-primary-fixed cursor-pointer transition-colors">
+<span class="material-symbols-outlined text-[18px] text-primary">public</span>
+</div>
+<div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center hover:bg-primary-fixed cursor-pointer transition-colors">
+<span class="material-symbols-outlined text-[18px] text-primary">mail</span>
+</div>
+</div>
+</div>
+</footer>
+<script>
+        // Simple micro-interaction for schedule tags
+        const scheduleCheckboxes = document.querySelectorAll('input[name="schedule"]');
+        scheduleCheckboxes.forEach(cb => {
+            cb.addEventListener('change', (e) => {
+                const label = e.target.closest('label').querySelector('div');
+                if (e.target.checked) {
+                    label.style.transform = 'scale(1.05)';
+                    setTimeout(() => label.style.transform = 'scale(1)', 150);
+                }
+            });
+        });
+
+        // Form submission prevention for demo
+        document.querySelector('form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Mentorship request sent successfully! Redirecting to confirmation page...');
+        });
+    </script>
+</body></html>

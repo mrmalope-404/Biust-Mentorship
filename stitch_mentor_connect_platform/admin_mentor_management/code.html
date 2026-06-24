@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>BIUST Mentor Admin Console</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts: Inter & Plus Jakarta Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface": "#f7f9fb",
+                    "tertiary-fixed": "#e1e0ff",
+                    "surface-container-lowest": "#ffffff",
+                    "on-surface": "#191c1e",
+                    "inverse-primary": "#b7c4ff",
+                    "primary-fixed-dim": "#b7c4ff",
+                    "on-primary-container": "#dfe3ff",
+                    "primary-container": "#0052ff",
+                    "outline-variant": "#c3c5d9",
+                    "secondary-fixed-dim": "#b2c6f7",
+                    "secondary-fixed": "#d8e2ff",
+                    "on-secondary": "#ffffff",
+                    "surface-bright": "#f7f9fb",
+                    "secondary": "#4a5e88",
+                    "inverse-on-surface": "#eff1f3",
+                    "surface-container": "#eceef0",
+                    "on-background": "#191c1e",
+                    "on-error": "#ffffff",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed-dim": "#c0c1ff",
+                    "inverse-surface": "#2d3133",
+                    "on-primary": "#ffffff",
+                    "tertiary-container": "#5153de",
+                    "tertiary": "#3737c5",
+                    "on-tertiary-fixed-variant": "#2f2ebe",
+                    "on-secondary-fixed": "#001a41",
+                    "surface-container-low": "#f2f4f6",
+                    "on-primary-fixed": "#001452",
+                    "on-tertiary-container": "#e3e2ff",
+                    "outline": "#737688",
+                    "surface-tint": "#004ced",
+                    "on-tertiary-fixed": "#07006c",
+                    "on-secondary-fixed-variant": "#32466f",
+                    "surface-container-high": "#e6e8ea",
+                    "secondary-container": "#bacfff",
+                    "on-surface-variant": "#434656",
+                    "on-primary-fixed-variant": "#0038b6",
+                    "on-error-container": "#93000a",
+                    "on-secondary-container": "#435881",
+                    "surface-variant": "#e0e3e5",
+                    "on-tertiary": "#ffffff",
+                    "background": "#f7f9fb",
+                    "surface-container-highest": "#e0e3e5",
+                    "primary-fixed": "#dde1ff",
+                    "primary": "#003ec7",
+                    "error-container": "#ffdad6",
+                    "surface-dim": "#d8dadc"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "40px",
+                    "gutter": "24px",
+                    "margin-mobile": "16px",
+                    "base": "8px",
+                    "container-max": "1280px",
+                    "section-gap": "64px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Inter"],
+                    "label-bold": ["Plus Jakarta Sans"],
+                    "label-caps": ["Plus Jakarta Sans"],
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "headline-lg-mobile": ["Plus Jakarta Sans"],
+                    "display-lg": ["Plus Jakarta Sans"],
+                    "body-sm": ["Inter"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "label-bold": ["14px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "label-caps": ["12px", {"lineHeight": "1", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "display-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #f7f9fb;
+            color: #191c1e;
+            -webkit-font-smoothing: antialiased;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #c3c5d9;
+            border-radius: 10px;
+        }
+        .active-nav-indicator {
+            position: absolute;
+            right: 0;
+            width: 4px;
+            height: 100%;
+            background-color: #003ec7;
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md overflow-x-hidden">
+<!-- Sidebar Navigation -->
+<aside class="fixed left-0 top-0 h-screen w-64 bg-surface-container dark:bg-inverse-surface shadow-sm flex flex-col py-base z-50">
+<!-- Brand Header -->
+<div class="px-gutter mb-section-gap pt-base">
+<h1 class="text-headline-md font-headline-md font-bold text-primary dark:text-inverse-primary leading-tight">BIUST Mentor Admin</h1>
+<p class="text-label-bold font-label-bold text-on-surface-variant/70 uppercase tracking-wider text-[10px] mt-1">Institutional Portal</p>
+</div>
+<!-- Navigation Links -->
+<nav class="flex-1 px-3 space-y-1 overflow-y-auto custom-scrollbar">
+<!-- Dashboard (Inactive) -->
+<a class="group flex items-center px-4 py-3 text-on-surface-variant dark:text-surface-variant font-label-bold text-label-bold hover:bg-surface-container-high dark:hover:bg-surface-variant/20 transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined mr-3">dashboard</span>
+<span>Dashboard</span>
+</a>
+<!-- Mentors (Active) -->
+<a class="relative group flex items-center px-4 py-3 text-primary dark:text-inverse-primary font-label-bold text-label-bold bg-primary-container/10 transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined mr-3" style="font-variation-settings: 'FILL' 1;">school</span>
+<span>Mentors</span>
+<div class="absolute right-0 top-2 bottom-2 w-1 bg-primary rounded-l-full"></div>
+</a>
+<!-- Students (Inactive) -->
+<a class="group flex items-center px-4 py-3 text-on-surface-variant dark:text-surface-variant font-label-bold text-label-bold hover:bg-surface-container-high dark:hover:bg-surface-variant/20 transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined mr-3">group</span>
+<span>Students</span>
+</a>
+<!-- Reports (Inactive) -->
+<a class="group flex items-center px-4 py-3 text-on-surface-variant dark:text-surface-variant font-label-bold text-label-bold hover:bg-surface-container-high dark:hover:bg-surface-variant/20 transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined mr-3">analytics</span>
+<span>Reports</span>
+</a>
+<!-- Settings (Inactive) -->
+<a class="group flex items-center px-4 py-3 text-on-surface-variant dark:text-surface-variant font-label-bold text-label-bold hover:bg-surface-container-high dark:hover:bg-surface-variant/20 transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined mr-3">settings</span>
+<span>Settings</span>
+</a>
+</nav>
+<!-- Sidebar Footer / CTA -->
+<div class="px-4 mt-auto">
+<button class="w-full py-3 bg-primary-container text-on-primary-container rounded-xl font-label-bold text-label-bold flex items-center justify-center gap-2 hover:opacity-90 active:scale-95 transition-all shadow-sm">
+<span class="material-symbols-outlined">add</span>
+                Add New Mentor
+            </button>
+<div class="flex items-center gap-3 mt-6 p-2 rounded-lg bg-surface-container-low border border-outline-variant/30">
+<img class="w-10 h-10 rounded-full border-2 border-primary/20 object-cover" data-alt="A professional headshot of a middle-aged academic administrator in a clean-cut business suit. The person is smiling warmly in a bright, modern office with soft daylight and blurry books in the background. The aesthetic is professional, sharp, and corporate, using a palette of soft whites and deep blues to convey institutional trust." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXf7RdRlUD34mG8skXoWNgOLM_5Md36NQYGiw3RO0Q6kdHqvb2ezar4912QzhtL0peUKPb9wYEhFJ8866gygIJbnyU2L8qbyamnNXCeqQzxA7eebcWODf0GTJZa5XYA8rt54Lw5TKicFnT6CGIX8MFIraiEEDpy0H8e3ecTyJAiZKDlv1pYCp3jiqRK42eSlpOocTMyunB50M8cnvIXwkD9-foHSxlynfnQ1LLwBbdy1Lc7HprsyI3ivloGJ8fIeMiZsps3S_zm7qd"/>
+<div class="overflow-hidden">
+<p class="font-label-bold text-on-surface truncate">Admin User</p>
+<p class="text-[11px] text-on-surface-variant truncate">Principal Coordinator</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Shell -->
+<main class="ml-64 min-h-screen relative flex flex-col">
+<!-- Top Bar -->
+<header class="h-16 bg-surface/80 backdrop-blur-md sticky top-0 z-40 border-b border-outline-variant/30 flex items-center justify-between px-gutter">
+<div class="flex items-center gap-4 flex-1">
+<div class="relative max-w-md w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-full py-2 pl-10 pr-4 text-body-sm focus:ring-2 focus:ring-primary/20 placeholder:text-outline/70" placeholder="Search mentors, departments, or students..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 rounded-full hover:bg-surface-container-high flex items-center justify-center text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="w-10 h-10 rounded-full hover:bg-surface-container-high flex items-center justify-center text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+</div>
+</header>
+<!-- Content Canvas -->
+<div class="p-gutter flex-1">
+<!-- Breadcrumbs & Title -->
+<div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Mentor Management</h2>
+<p class="text-body-md text-on-surface-variant mt-1">Oversee and coordinate the mentorship distribution across departments.</p>
+</div>
+<div class="flex gap-3">
+<button class="px-5 py-2.5 bg-surface-container-highest text-on-surface rounded-lg font-label-bold flex items-center gap-2 border border-outline-variant hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined text-[20px]">filter_list</span>
+                        Filters
+                    </button>
+<button class="px-5 py-2.5 bg-primary text-on-primary rounded-lg font-label-bold flex items-center gap-2 shadow-md hover:bg-primary/90 transition-all active:scale-[0.98]">
+<span class="material-symbols-outlined text-[20px]">person_add</span>
+                        Add New Mentor
+                    </button>
+</div>
+</div>
+<!-- Analytics Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+<!-- Stat Card 1 -->
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/40 shadow-sm relative overflow-hidden group">
+<div class="absolute right-0 top-0 p-4 opacity-5 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-8xl text-primary">school</span>
+</div>
+<p class="text-on-surface-variant font-label-bold text-label-bold flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+                        Total Mentors
+                    </p>
+<div class="mt-4 flex items-baseline gap-2">
+<span class="text-display-lg font-display-lg text-on-surface">42</span>
+<span class="text-body-sm text-green-600 font-medium flex items-center">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+                            +12%
+                        </span>
+</div>
+<p class="text-body-sm text-outline mt-2">Active across 6 departments</p>
+</div>
+<!-- Stat Card 2 -->
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/40 shadow-sm relative overflow-hidden group">
+<div class="absolute right-0 top-0 p-4 opacity-5 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-8xl text-secondary">groups</span>
+</div>
+<p class="text-on-surface-variant font-label-bold text-label-bold flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+                        Active Mentees
+                    </p>
+<div class="mt-4 flex items-baseline gap-2">
+<span class="text-display-lg font-display-lg text-on-surface">156</span>
+<span class="text-body-sm text-green-600 font-medium flex items-center">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+                            +4%
+                        </span>
+</div>
+<p class="text-body-sm text-outline mt-2">Enrolled in professional tracks</p>
+</div>
+<!-- Stat Card 3 -->
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/40 shadow-sm relative overflow-hidden group">
+<div class="absolute right-0 top-0 p-4 opacity-5 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-8xl text-tertiary">data_usage</span>
+</div>
+<p class="text-on-surface-variant font-label-bold text-label-bold flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+                        Average Capacity
+                    </p>
+<div class="mt-4 flex items-baseline gap-2">
+<span class="text-display-lg font-display-lg text-on-surface">82%</span>
+<span class="text-body-sm text-error font-medium flex items-center">
+<span class="material-symbols-outlined text-sm">trending_down</span>
+                            -2%
+                        </span>
+</div>
+<p class="text-body-sm text-outline mt-2">Nearing threshold for new mentors</p>
+</div>
+</div>
+<!-- Mentor Capacity Table Section -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant/40 shadow-sm overflow-hidden">
+<div class="px-gutter py-5 border-b border-outline-variant/30 flex items-center justify-between">
+<h3 class="font-headline-md text-headline-md text-on-surface">Mentor Roster &amp; Capacity</h3>
+<div class="flex items-center gap-2">
+<span class="text-body-sm text-on-surface-variant mr-4">Showing 1-8 of 42 mentors</span>
+<div class="flex border border-outline-variant rounded-md overflow-hidden">
+<button class="p-1 hover:bg-surface-container-high text-on-surface-variant disabled:opacity-30" disabled="">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="p-1 hover:bg-surface-container-high text-on-surface-variant">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full border-collapse text-left">
+<thead class="bg-surface-container-low text-on-surface-variant font-label-caps text-label-caps uppercase tracking-wider">
+<tr>
+<th class="px-gutter py-4 font-semibold">Mentor Name</th>
+<th class="px-6 py-4 font-semibold">Field / Expertise</th>
+<th class="px-6 py-4 font-semibold text-center">Current Students</th>
+<th class="px-6 py-4 font-semibold">Capacity Status</th>
+<th class="px-6 py-4 font-semibold">Status</th>
+<th class="px-gutter py-4 font-semibold text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/20">
+<!-- Mentor Row 1 -->
+<tr class="hover:bg-surface-container/30 transition-colors group">
+<td class="px-gutter py-5">
+<div class="flex items-center gap-3">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="A portrait of a distinguished African male professor in his late 50s, wearing spectacles and a scholarly tweed blazer. He is standing in front of a modern chalkboard filled with complex algorithms. The lighting is warm and intellectual, emphasizing wisdom and experience. The aesthetic is clean and high-end, perfectly suited for an academic platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8sjNq5sBEhS-5yJjxSk6xO6GSxekDo7gk9kuJB-pvvUq5HFWiEw-v2UcSiPGFfrdIROzLdqAY-1awLM-mt5KKmNfNNXozT-MW18HbEllnNXRB6o8N5jq8qsMK5i5FRDKHTjzZfXCqS5V27dazMPGvXvWru15SiN-3yFw6ZcU3LI2_HnsBgwFP69PsSxDDVgY6McYfRjKyv9jhiBeZChI9PznmQT1CHuklJaFW2WHpkOJ7l4aBOkQuKpcTjLQ_o8G-01ov6Y0U8ktG"/>
+<div>
+<p class="font-label-bold text-on-surface">Dr. Thabo Mbeki</p>
+<p class="text-body-sm text-on-surface-variant">thabo.m@biust.ac.bw</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="px-3 py-1 bg-primary-fixed text-on-primary-fixed rounded-full text-[12px] font-label-bold">Artificial Intelligence</span>
+</td>
+<td class="px-6 py-5 text-center">
+<a class="text-primary hover:underline font-label-bold" href="#">4 Students</a>
+</td>
+<td class="px-6 py-5">
+<div class="w-48">
+<div class="flex justify-between items-center mb-1 text-[12px]">
+<span class="text-on-surface-variant font-medium">80% Full</span>
+<span class="text-on-surface font-bold">4/5</span>
+</div>
+<div class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 80%"></div>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="flex items-center gap-1.5 text-green-600 font-label-bold text-[13px]">
+<span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                                        Active
+                                    </span>
+</td>
+<td class="px-gutter py-5 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 hover:bg-surface-container-highest rounded-lg text-on-surface-variant" title="Edit">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-2 hover:bg-error-container hover:text-error rounded-lg text-on-surface-variant" title="Remove">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Mentor Row 2 -->
+<tr class="hover:bg-surface-container/30 transition-colors group">
+<td class="px-gutter py-5">
+<div class="flex items-center gap-3">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="A portrait of a young female tech professional in her early 30s, dressed in modern business casual attire. She has a confident smile and is positioned in a bright, tech-oriented space with minimalist neon accents in the background. The color palette is clean with vibrant blue accents, reflecting a forward-thinking academic and professional environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7omA61sUs22D6yE_8-szkpsO1yzULX37z9mXrlIH9MhCOhoIsItBbpXDbLS6NkRjHW06bjDLPNLJhweQZXhcZEJV5adbBDslPkfgjbjpW2fVnUQjSaXBd1ZHCDes0e20Ik6YHFcLzqegQZJ75wgEzhLMeSr8AQgRGoxhTLoXB8dr2yDL0YpGhvgijgqrl-DEpYdSd1kJsGQpVORlrpfCePqHPuXlM3oT62fk7lLxY90pxG7cMW-xSRUNop2Iu8wnVit6locnbApoX"/>
+<div>
+<p class="font-label-bold text-on-surface">Prof. Sarah Jenkins</p>
+<p class="text-body-sm text-on-surface-variant">s.jenkins@biust.ac.bw</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="px-3 py-1 bg-secondary-fixed text-on-secondary-fixed rounded-full text-[12px] font-label-bold">Mechanical Engineering</span>
+</td>
+<td class="px-6 py-5 text-center">
+<a class="text-primary hover:underline font-label-bold" href="#">5 Students</a>
+</td>
+<td class="px-6 py-5">
+<div class="w-48">
+<div class="flex justify-between items-center mb-1 text-[12px]">
+<span class="text-error font-medium">At Capacity</span>
+<span class="text-on-surface font-bold">5/5</span>
+</div>
+<div class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-error rounded-full" style="width: 100%"></div>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="flex items-center gap-1.5 text-green-600 font-label-bold text-[13px]">
+<span class="w-2 h-2 rounded-full bg-green-500"></span>
+                                        Active
+                                    </span>
+</td>
+<td class="px-gutter py-5 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 hover:bg-surface-container-highest rounded-lg text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-2 hover:bg-error-container hover:text-error rounded-lg text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Mentor Row 3 -->
+<tr class="hover:bg-surface-container/30 transition-colors group">
+<td class="px-gutter py-5">
+<div class="flex items-center gap-3">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="A portrait of a male environmental scientist in his 40s, wearing an outdoor research jacket over a professional shirt. He is outdoors in a campus garden with sunlight filtering through leaves. The mood is calm and focused on sustainability. The image follows a high-clarity corporate style with soft depths of field and high-key lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxbUskBaKV4yMrs14Z9FTrCYGDVlJEac3ZEECcaz3zHUBpv7ccAq6jLchDr6ZQOUg5X79xMvYDqCRV8uh2CwRxQpjeCFBcfYaQMaNWv7J0QjTvo0T5AwZyAJSjLO8Iibgok0PR82rSuFQkNcUY8Elj3__Z5bJ2IhQNf9UOEX-udZatui-d3-5VdCoUKeebZ0hzRcrX4PkpoW1bWqFsKxIVwmJYhKrxe5iuj4VGe8QOneGS8-M_VEmNTvT44-gBHERfhCttktHFGxkm"/>
+<div>
+<p class="font-label-bold text-on-surface">Dr. Kevin Botha</p>
+<p class="text-body-sm text-on-surface-variant">k.botha@biust.ac.bw</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="px-3 py-1 bg-tertiary-fixed text-on-tertiary-fixed rounded-full text-[12px] font-label-bold">Environmental Science</span>
+</td>
+<td class="px-6 py-5 text-center">
+<a class="text-primary hover:underline font-label-bold" href="#">2 Students</a>
+</td>
+<td class="px-6 py-5">
+<div class="w-48">
+<div class="flex justify-between items-center mb-1 text-[12px]">
+<span class="text-on-surface-variant font-medium">Below Capacity</span>
+<span class="text-on-surface font-bold">2/5</span>
+</div>
+<div class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-secondary rounded-full" style="width: 40%"></div>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="flex items-center gap-1.5 text-on-surface-variant font-label-bold text-[13px]">
+<span class="w-2 h-2 rounded-full bg-outline"></span>
+                                        Inactive
+                                    </span>
+</td>
+<td class="px-gutter py-5 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 hover:bg-surface-container-highest rounded-lg text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-2 hover:bg-error-container hover:text-error rounded-lg text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Mentor Row 4 -->
+<tr class="hover:bg-surface-container/30 transition-colors group">
+<td class="px-gutter py-5">
+<div class="flex items-center gap-3">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="A portrait of a middle-aged female mathematician in a minimalist home office with clean lines and mathematical art on the wall. She is wearing a modern navy dress and has a friendly, professional expression. The photo is well-lit with high key lighting and crisp focus. The overall look is modern, academic, and professional." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYaGIsueU6-pTh07R7zHpXpq0IgKn4woFCXlrd9pBHWQb-LXxCaIprKRrcHmH892nGB0i_Wow-17XSd3p2dE1oyb8ScvyLc0cZwJrGo40fpQ7ntTdJsktMLQPpu0Nn3aN3YoUdLKuibmFjI2Wy2AxYrqLNCswXJl2enUjSLWvku9ofdDAEY57VZh8nfFb-cPF3Rl4c8thzTHGApCILT3v6NMizPLKFV3mV_e9zml2BoXXi97UU0XnPUsweHaJkXTi5NW6LtFueA53o"/>
+<div>
+<p class="font-label-bold text-on-surface">Dr. Amina Yusuf</p>
+<p class="text-body-sm text-on-surface-variant">a.yusuf@biust.ac.bw</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="px-3 py-1 bg-primary-fixed text-on-primary-fixed rounded-full text-[12px] font-label-bold">Mathematics</span>
+</td>
+<td class="px-6 py-5 text-center">
+<a class="text-primary hover:underline font-label-bold" href="#">3 Students</a>
+</td>
+<td class="px-6 py-5">
+<div class="w-48">
+<div class="flex justify-between items-center mb-1 text-[12px]">
+<span class="text-on-surface-variant font-medium">Optimal</span>
+<span class="text-on-surface font-bold">3/5</span>
+</div>
+<div class="h-2 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 60%"></div>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="flex items-center gap-1.5 text-green-600 font-label-bold text-[13px]">
+<span class="w-2 h-2 rounded-full bg-green-500"></span>
+                                        Active
+                                    </span>
+</td>
+<td class="px-gutter py-5 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 hover:bg-surface-container-highest rounded-lg text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-2 hover:bg-error-container hover:text-error rounded-lg text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="px-gutter py-4 bg-surface-container-low/50 flex items-center justify-between">
+<button class="text-body-sm text-primary font-label-bold hover:underline">View All Mentor History</button>
+<button class="text-body-sm text-on-surface-variant font-label-bold hover:text-primary flex items-center gap-1">
+                        Export Report
+                        <span class="material-symbols-outlined text-[16px]">download</span>
+</button>
+</div>
+</div>
+<!-- Departmental Overview Section (Bento Extension) -->
+<div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Capacity Heatmap / Quick Status -->
+<div class="bg-surface-container-lowest p-gutter rounded-xl border border-outline-variant/40 shadow-sm">
+<h4 class="font-label-bold text-on-surface mb-6 flex items-center justify-between">
+                        Department Load
+                        <span class="text-[11px] text-outline font-normal uppercase">Real-time Data</span>
+</h4>
+<div class="space-y-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">computer</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-end mb-1">
+<p class="text-body-sm font-semibold text-on-surface">Computing &amp; IS</p>
+<p class="text-[12px] text-on-surface-variant">92% Utilized</p>
+</div>
+<div class="h-1.5 w-full bg-surface-container-high rounded-full">
+<div class="h-full bg-primary rounded-full" style="width: 92%"></div>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-secondary/10 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">settings_suggest</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-end mb-1">
+<p class="text-body-sm font-semibold text-on-surface">Mech. Engineering</p>
+<p class="text-[12px] text-on-surface-variant">78% Utilized</p>
+</div>
+<div class="h-1.5 w-full bg-surface-container-high rounded-full">
+<div class="h-full bg-secondary rounded-full" style="width: 78%"></div>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-tertiary/10 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined">biotech</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-end mb-1">
+<p class="text-body-sm font-semibold text-on-surface">Natural Sciences</p>
+<p class="text-[12px] text-on-surface-variant">45% Utilized</p>
+</div>
+<div class="h-1.5 w-full bg-surface-container-high rounded-full">
+<div class="h-full bg-tertiary rounded-full" style="width: 45%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Recent Activity / Notifications -->
+<div class="bg-surface-container-lowest p-gutter rounded-xl border border-outline-variant/40 shadow-sm">
+<h4 class="font-label-bold text-on-surface mb-6">Recent Coordination Logs</h4>
+<div class="space-y-4">
+<div class="flex gap-4 items-start">
+<div class="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0"></div>
+<div>
+<p class="text-body-sm font-medium text-on-surface">New mentor profile approved</p>
+<p class="text-[12px] text-on-surface-variant">Dr. Emily Chen joined Computing &amp; IS track.</p>
+<p class="text-[10px] text-outline mt-1">2 hours ago</p>
+</div>
+</div>
+<div class="flex gap-4 items-start">
+<div class="w-2 h-2 rounded-full bg-green-500 mt-2 flex-shrink-0"></div>
+<div>
+<p class="text-body-sm font-medium text-on-surface">Capacity alert cleared</p>
+<p class="text-[12px] text-on-surface-variant">Mathematics department load decreased below 80%.</p>
+<p class="text-[10px] text-outline mt-1">5 hours ago</p>
+</div>
+</div>
+<div class="flex gap-4 items-start">
+<div class="w-2 h-2 rounded-full bg-error mt-2 flex-shrink-0"></div>
+<div>
+<p class="text-body-sm font-medium text-on-surface">Student reassignment pending</p>
+<p class="text-[12px] text-on-surface-variant">3 students require a new mentor in Mech. Engineering.</p>
+<p class="text-[10px] text-outline mt-1">Yesterday</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<footer class="mt-auto px-gutter py-8 border-t border-outline-variant/30 flex flex-col md:flex-row items-center justify-between text-on-surface-variant/60 text-[12px]">
+<p>© 2024 BIUST Academic Guidance System. All rights reserved.</p>
+<div class="flex gap-6 mt-4 md:mt-0">
+<a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-primary transition-colors" href="#">System Status</a>
+<a class="hover:text-primary transition-colors" href="#">Support Desk</a>
+</div>
+</footer>
+</main>
+<!-- Interactive Layer: Simple Notification Center Toggle Script -->
+<script>
+        // Simple Micro-interaction for UI feel
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const icon = this.querySelector('.material-symbols-outlined');
+                if (icon) {
+                    icon.style.transform = 'scale(0.9)';
+                    setTimeout(() => {
+                        icon.style.transform = 'scale(1)';
+                    }, 150);
+                }
+            });
+        });
+
+        // Simulating search focusing
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('focus', () => {
+            searchInput.parentElement.classList.add('ring-2', 'ring-primary/20');
+        });
+        searchInput.addEventListener('blur', () => {
+            searchInput.parentElement.classList.remove('ring-2', 'ring-primary/20');
+        });
+    </script>
+</body></html>
