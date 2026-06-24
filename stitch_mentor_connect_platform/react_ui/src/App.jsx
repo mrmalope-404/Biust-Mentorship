@@ -50,6 +50,12 @@ function Header({ active, onNav }) {
           >
             About
           </button>
+          <button
+            className={`pb-1 font-body-md text-body-md transition-colors duration-200 ${active === "admin" ? "text-primary border-b-2 border-primary font-bold" : "text-on-surface-variant hover:text-primary"}`}
+            onClick={() => onNav("admin")}
+          >
+            Admin
+          </button>
         </div>
         <div className="flex items-center gap-4">
           <button className="p-2 rounded-full hover:bg-surface-container transition-colors duration-200 active:scale-95">
@@ -835,9 +841,239 @@ function ConfirmationStep({ onGoFields, selectedMentor }) {
 }
 
 /* ────────────────────────────────────────────
+   SCREEN 5: ADMIN MENTOR MANAGEMENT (admin panel)
+   ──────────────────────────────────────────── */
+function AdminStep({ search, setSearch, onToast }) {
+  const filteredMentors = useMemo(() => {
+    const q = search.trim().toLowerCase();
+    return MENTORS.filter((m) => {
+      const h = [m.name, m.d, m.sk.join(" "), m.r, m.f].join(" ").toLowerCase();
+      return !q || h.includes(q);
+    });
+  }, [search]);
+
+  function getCapacityLabel(m) {
+    const pct = Math.round((m.st / m.ca) * 100);
+    if (pct >= 100) return { label: "At Capacity", pct: 100, color: "bg-error", textColor: "text-error" };
+    if (pct >= 80) return { label: `${pct}% Full`, pct, color: "bg-primary", textColor: "text-on-surface-variant" };
+    if (pct >= 40) return { label: "Optimal", pct, color: "bg-secondary", textColor: "text-on-surface-variant" };
+    return { label: "Below Capacity", pct, color: "bg-tertiary", textColor: "text-on-surface-variant" };
+  }
+
+  return (
+    <div className="min-h-screen bg-surface">
+      <div className="max-w-container-max mx-auto px-margin-desktop py-8">
+        {/* Breadcrumbs & Title */}
+        <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
+          <div>
+            <h2 className="font-headline-lg text-headline-lg text-on-surface">Mentor Management</h2>
+            <p className="text-body-md text-on-surface-variant mt-1">Oversee and coordinate the mentorship distribution across departments.</p>
+          </div>
+          <div className="flex gap-3">
+            <button className="px-5 py-2.5 bg-surface-container-highest text-on-surface rounded-lg font-label-bold flex items-center gap-2 border border-outline-variant hover:bg-surface-variant transition-colors">
+              <span className="material-symbols-outlined text-[20px]">filter_list</span>
+              Filters
+            </button>
+            <button className="px-5 py-2.5 bg-primary text-on-primary rounded-lg font-label-bold flex items-center gap-2 shadow-md hover:bg-primary/90 transition-all active:scale-[0.98]" onClick={() => onToast("Add new mentor form opened (demo)")}>
+              <span className="material-symbols-outlined text-[20px]">person_add</span>
+              Add New Mentor
+            </button>
+          </div>
+        </div>
+
+        {/* Analytics Bento Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+          {[
+            { label: "Total Mentors", value: "42", change: "+12%", up: true, desc: "Active across 6 departments", icon: "school", iconColor: "text-primary" },
+            { label: "Active Mentees", value: "156", change: "+4%", up: true, desc: "Enrolled in professional tracks", icon: "groups", iconColor: "text-secondary" },
+            { label: "Average Capacity", value: "82%", change: "-2%", up: false, desc: "Nearing threshold for new mentors", icon: "data_usage", iconColor: "text-tertiary" },
+          ].map((stat, i) => (
+            <div key={i} className="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/40 shadow-sm relative overflow-hidden group">
+              <div className="absolute right-0 top-0 p-4 opacity-5 group-hover:scale-110 transition-transform">
+                <span className={`material-symbols-outlined text-8xl ${stat.iconColor}`}>{stat.icon}</span>
+              </div>
+              <p className="text-on-surface-variant font-label-bold text-label-bold flex items-center gap-2">
+                <span className={`w-2 h-2 rounded-full ${stat.up ? "bg-primary" : "bg-tertiary"}`}></span>
+                {stat.label}
+              </p>
+              <div className="mt-4 flex items-baseline gap-2">
+                <span className="text-display-lg font-display-lg text-on-surface">{stat.value}</span>
+                <span className={`text-body-sm font-medium flex items-center ${stat.up ? "text-green-600" : "text-error"}`}>
+                  <span className="material-symbols-outlined text-sm">{stat.up ? "trending_up" : "trending_down"}</span>
+                  {stat.change}
+                </span>
+              </div>
+              <p className="text-body-sm text-outline mt-2">{stat.desc}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* Search Bar */}
+        <div className="relative max-w-md mb-6">
+          <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+          <input
+            className="w-full bg-surface-container-lowest border border-outline-variant/40 rounded-full py-3 pl-10 pr-4 text-body-sm focus:ring-2 focus:ring-primary/20 placeholder:text-outline/70"
+            placeholder="Search mentors, departments..."
+            type="text"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+        </div>
+
+        {/* Mentor Roster Table */}
+        <div className="bg-surface-container-lowest rounded-xl border border-outline-variant/40 shadow-sm overflow-hidden">
+          <div className="px-gutter py-5 border-b border-outline-variant/30 flex items-center justify-between">
+            <h3 className="font-headline-md text-headline-md text-on-surface">Mentor Roster & Capacity</h3>
+            <div className="flex items-center gap-2">
+              <span className="text-body-sm text-on-surface-variant mr-4">Showing 1-{Math.min(filteredMentors.length, 8)} of {filteredMentors.length} mentors</span>
+              <div className="flex border border-outline-variant rounded-md overflow-hidden">
+                <button className="p-1 hover:bg-surface-container-high text-on-surface-variant disabled:opacity-30" disabled>
+                  <span className="material-symbols-outlined">chevron_left</span>
+                </button>
+                <button className="p-1 hover:bg-surface-container-high text-on-surface-variant">
+                  <span className="material-symbols-outlined">chevron_right</span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse text-left">
+              <thead className="bg-surface-container-low text-on-surface-variant font-label-caps text-label-caps uppercase tracking-wider">
+                <tr>
+                  <th className="px-gutter py-4 font-semibold">Mentor Name</th>
+                  <th className="px-6 py-4 font-semibold">Field / Expertise</th>
+                  <th className="px-6 py-4 font-semibold text-center">Current Students</th>
+                  <th className="px-6 py-4 font-semibold">Capacity Status</th>
+                  <th className="px-6 py-4 font-semibold">Status</th>
+                  <th className="px-gutter py-4 font-semibold text-right">Actions</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-outline-variant/20">
+                {filteredMentors.slice(0, 8).map((m) => {
+                  const cap = getCapacityLabel(m);
+                  return (
+                    <tr key={m.name} className="hover:bg-surface-container/30 transition-colors group">
+                      <td className="px-gutter py-5">
+                        <div className="flex items-center gap-3">
+                          <img className="w-10 h-10 rounded-full object-cover" src={m.img} alt={m.name} />
+                          <div>
+                            <p className="font-label-bold text-on-surface">{m.name}</p>
+                            <p className="text-body-sm text-on-surface-variant">{m.name.toLowerCase().replace(/\s+/g, '.')}@biust.ac.bw</p>
+                          </div>
+                        </div>
+                      </td>
+                      <td className="px-6 py-5">
+                        <span className="px-3 py-1 bg-primary-fixed text-on-primary-fixed rounded-full text-[12px] font-label-bold">{m.sk[0]}</span>
+                      </td>
+                      <td className="px-6 py-5 text-center">
+                        <a className="text-primary hover:underline font-label-bold" href="#">{m.st} Students</a>
+                      </td>
+                      <td className="px-6 py-5">
+                        <div className="w-48">
+                          <div className="flex justify-between items-center mb-1 text-[12px]">
+                            <span className={`font-medium ${cap.textColor}`}>{cap.label}</span>
+                            <span className="text-on-surface font-bold">{m.st}/{m.ca}</span>
+                          </div>
+                          <div className="h-2 w-full bg-surface-container-high rounded-full overflow-hidden">
+                            <div className={`h-full ${cap.color} rounded-full`} style={{ width: `${cap.pct}%` }}></div>
+                          </div>
+                        </div>
+                      </td>
+                      <td className="px-6 py-5">
+                        <span className={`flex items-center gap-1.5 font-label-bold text-[13px] ${m.av ? "text-green-600" : "text-on-surface-variant"}`}>
+                          <span className={`w-2 h-2 rounded-full ${m.av ? "bg-green-500 animate-pulse" : "bg-outline"}`}></span>
+                          {m.av ? "Active" : "Inactive"}
+                        </span>
+                      </td>
+                      <td className="px-gutter py-5 text-right">
+                        <div className="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                          <button className="p-2 hover:bg-surface-container-highest rounded-lg text-on-surface-variant" title="Edit" onClick={() => onToast(`Editing ${m.name}`)}>
+                            <span className="material-symbols-outlined text-[20px]">edit</span>
+                          </button>
+                          <button className="p-2 hover:bg-error-container hover:text-error rounded-lg text-on-surface-variant" title="Remove" onClick={() => onToast(`Remove ${m.name} (demo)`)}>
+                            <span className="material-symbols-outlined text-[20px]">delete</span>
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  );
+                })}
+                {filteredMentors.length === 0 && (
+                  <tr>
+                    <td colSpan="6" className="text-center py-10 text-on-surface-variant">No mentors match your search.</td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
+          <div className="px-gutter py-4 bg-surface-container-low/50 flex items-center justify-between">
+            <button className="text-body-sm text-primary font-label-bold hover:underline">View All Mentor History</button>
+            <button className="text-body-sm text-on-surface-variant font-label-bold hover:text-primary flex items-center gap-1">
+              Export Report
+              <span className="material-symbols-outlined text-[16px]">download</span>
+            </button>
+          </div>
+        </div>
+
+        {/* Departmental Overview */}
+        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="bg-surface-container-lowest p-gutter rounded-xl border border-outline-variant/40 shadow-sm">
+            <h4 className="font-label-bold text-on-surface mb-6 flex items-center justify-between">
+              Department Load
+              <span className="text-[11px] text-outline font-normal uppercase">Real-time Data</span>
+            </h4>
+            <div className="space-y-4">
+              {[
+                { icon: "computer", label: "Computing & IS", pct: 92, color: "bg-primary" },
+                { icon: "settings_suggest", label: "Mech. Engineering", pct: 78, color: "bg-secondary" },
+                { icon: "biotech", label: "Natural Sciences", pct: 45, color: "bg-tertiary" },
+              ].map((dept, i) => (
+                <div key={i} className="flex items-center gap-4">
+                  <div className={`w-12 h-12 rounded-lg ${dept.color}/10 flex items-center justify-center ${dept.color.replace('bg-', 'text-')}`}>
+                    <span className="material-symbols-outlined">{dept.icon}</span>
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex justify-between items-end mb-1">
+                      <p className="text-body-sm font-semibold text-on-surface">{dept.label}</p>
+                      <p className="text-[12px] text-on-surface-variant">{dept.pct}% Utilized</p>
+                    </div>
+                    <div className="h-1.5 w-full bg-surface-container-high rounded-full">
+                      <div className={`h-full ${dept.color} rounded-full`} style={{ width: `${dept.pct}%` }}></div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="bg-surface-container-lowest p-gutter rounded-xl border border-outline-variant/40 shadow-sm">
+            <h4 className="font-label-bold text-on-surface mb-6">Recent Coordination Logs</h4>
+            <div className="space-y-4">
+              {[
+                { dot: "bg-primary", title: "New mentor profile approved", desc: "Dr. Emily Chen joined Computing & IS track.", time: "2 hours ago" },
+                { dot: "bg-green-500", title: "Capacity alert cleared", desc: "Mathematics department load decreased below 80%.", time: "5 hours ago" },
+                { dot: "bg-error", title: "Student reassignment pending", desc: "3 students require a new mentor in Mech. Engineering.", time: "Yesterday" },
+              ].map((log, i) => (
+                <div key={i} className="flex gap-4 items-start">
+                  <div className={`w-2 h-2 rounded-full ${log.dot} mt-2 flex-shrink-0`}></div>
+                  <div>
+                    <p className="text-body-sm font-medium text-on-surface">{log.title}</p>
+                    <p className="text-[12px] text-on-surface-variant">{log.desc}</p>
+                    <p className="text-[10px] text-outline mt-1">{log.time}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ────────────────────────────────────────────
    FOOTER
    ──────────────────────────────────────────── */
-function Footer() {
+function Footer({ onNav }) {
   return (
     <footer className="w-full py-section-gap bg-surface-dim mt-section-gap">
       <div className="flex flex-col md:flex-row justify-between items-center px-margin-desktop max-w-container-max mx-auto gap-8">
@@ -850,6 +1086,7 @@ function Footer() {
           <a className="font-body-sm text-body-sm text-on-surface-variant hover:underline decoration-primary transition-all" href="#">Terms of Service</a>
           <a className="font-body-sm text-body-sm text-on-surface-variant hover:underline decoration-primary transition-all" href="#">Support</a>
           <a className="font-body-sm text-body-sm text-on-surface-variant hover:underline decoration-primary transition-all" href="#">Contact Us</a>
+          <button className="font-body-sm text-body-sm text-on-surface-variant hover:text-primary hover:underline decoration-primary transition-all bg-transparent border-none cursor-pointer" onClick={() => onNav && onNav("admin")}>Admin Portal</button>
         </div>
         <div className="flex items-center gap-4">
           <a className="p-2 text-on-surface-variant hover:text-primary transition-colors" href="#"><span className="material-symbols-outlined">public</span></a>
@@ -874,6 +1111,7 @@ export default function App() {
   const [availabilityOnly, setAvailabilityOnly] = useState(false);
   const [search, setSearch] = useState("");
 
+  const [adminSearch, setAdminSearch] = useState("");
   const [form, setForm] = useState({
     n: "Kabelo M.",
     y: "2nd",
@@ -956,7 +1194,11 @@ export default function App() {
         />
       )}
 
-      <Footer />
+      {activeStep === "admin" && (
+        <AdminStep search={adminSearch} setSearch={setAdminSearch} onToast={msg} />
+      )}
+
+      <Footer onNav={go} />
       <Toast message={toast} />
     </>
   );
